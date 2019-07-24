@@ -10,6 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+$(document).ready(() => {
+    $("#add").on('click', event => {
+        const {currentTarget} = event
+        const text_field = $('<input id="place_name" type="text" name="place[name]">')
+        $('.attraction.site').append(text_field)
+        console.log('add button clicked!');
+        event.preventDefault();
+    })
+})
