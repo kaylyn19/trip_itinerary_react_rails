@@ -1,0 +1,4 @@
+<h1>Result</h1>
+
+<p>Yout trip is from <%= @from%> to <%= @to%> for <%= (DateTime.strptime(@to, '%Y-%m-%d') - DateTime.strptime(@from, '%Y-%m-%d')).to_i%> days</p>
+<p>Your choice of attraction sites are: <%= @name%></p>

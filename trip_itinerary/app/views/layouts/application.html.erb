@@ -7,14 +7,22 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <span style="display: flex; justify-content: space-between; align-items: center">
+      <div>
+        <% if user_signed_in? %>
+          <p>Signed In as <%= current_user.full_name%> | <%= link_to "Sign Out", session_path, method: :delete, data: {confirm: "Are you sure you want to sign out?"}%></p>
+        <% else %>
+          <%= link_to "Sign In", new_session_path%> | 
+          <%= link_to "Sign Up", new_user_path%>
+        <% end %>
 
-    <% if user_signed_in? %>
-      <p>Signed In as <%= current_user.full_name%> | <%= link_to "Sign Out", session_path, method: :delete, data: {confirm: "Are you sure you want to sign out?"}%></p>
-    <% else %>
-      <%= link_to "Sign In", new_session_path%> | 
-      <%= link_to "Sign Up", new_user_path%>
-    <% end %>
-    <%= flash[:notice] || flash[:alert]%>
+        <%= flash[:notice] || flash[:alert]%>
+      </div>
+
+      <div>
+        <%= link_to "Create", new_place_path%>
+      </div>
+    </span>
   </head>
 
   <body>

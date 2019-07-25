@@ -14,12 +14,15 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+
+
+
 $(document).ready(() => {
     $("#add").on('click', event => {
-        const {currentTarget} = event
-        const text_field = $('<input id="place_name" type="text" name="place[name]">')
+        let nameAttr = document.querySelectorAll(".places").length + 1;
+        // const text_field = $('<input id="name" type="text" name="name">')
+        const text_field = $('<input id="name" type="text" class="places" name="name'+nameAttr+'">')
         $('.attraction.site').append(text_field)
-        console.log('add button clicked!');
         event.preventDefault();
     })
 })
