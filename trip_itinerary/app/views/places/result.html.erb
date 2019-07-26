@@ -4,21 +4,26 @@
 <p>Your choice of attraction sites are: <%= @names.join(', ')%></p>
 
 <div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+  <div id="map" style='width: 800px; height: 500px;'></div>
 </div>
 
 <script>
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers([
+    <% @coords_collection.each do |coords|%>
+      markers = handler.addMarkers([
         {
-        "lat": 0,
-        "lng": 0,
-        "infowindow": "map"
+        "lat": <%= coords[0]%>,
+        "lng": <%= coords[1]%>,
+        "infowindow": "location"
         }
     ]);
+
+    <% end %>
+
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
-    handler.getMap().setZoom(17)
+
+    handler.getMap().setZoom(12)
     });
 </script>

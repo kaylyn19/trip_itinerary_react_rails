@@ -12,11 +12,4 @@ class Place < ApplicationRecord
     # def add_place
     # end
 
-    before_validation :from_date
-
-    private
-
-    def from_date
-        self.errors.add(:from_date, "cannot be empty") if from_date.blank?
-    end
 end

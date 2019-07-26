@@ -14,15 +14,16 @@ class PlacesController < ApplicationController
         @from = params[:from]
         @to = params[:to]
         @names = params[:name]
-        coords_collection = [];
+        @coords_collection = [];
         addresses = []
 ;
         @names.each do |name|
             coords = Geocoder.search(name)
-            coords_collection << coords.first.coordinates
+            @coords_collection << coords.first.coordinates
+            # [latitude, longitude]
         end
 
-        coords_collection.each do |coord|
+        @coords_collection.each do |coord|
             address = Geocoder.search(coord)
             addresses << address.first.address
         end
