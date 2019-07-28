@@ -1,7 +1,7 @@
 <h1>Result</h1>
 
-<p>Yout trip is from <%= @from%> to <%= @to%> for <%= (DateTime.strptime(@to, '%Y-%m-%d') - DateTime.strptime(@from, '%Y-%m-%d')).to_i%> days</p>
-<p>Your choice of attraction sites are: <%= @names.join(', ')%></p>
+<p>Yout trip is from <%= @from%> to <%= @to%> for <%= @duration%> days</p>
+<p>Your choice of attraction sites are: <%= @plan.keys.join(', ')%></p>
 
 <div style='width: 800px;'>
   <div id="map" style='width: 800px; height: 500px;'></div>
@@ -10,11 +10,11 @@
 <script>
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    <% @coords_collection.each do |coords|%>
+    <% @sort_coords.each do |coord|%>
       markers = handler.addMarkers([
-        {
-        "lat": <%= coords[0]%>,
-        "lng": <%= coords[1]%>,
+        { 
+        "lat": <%= coord[0]%>,
+        "lng": <%= coord[1]%>,
         "infowindow": "location"
         }
     ]);
@@ -27,3 +27,19 @@
     handler.getMap().setZoom(12)
     });
 </script>
+
+<h1>Your Itinerary</h1>
+<table>
+  <tr>
+    <th>Day(s)<th>
+    <th>Attractions<th>
+    <th>Address<th>
+  </tr>
+  <% for index in 1..@duration %>
+    <tr>
+      <td><%= index%><td>
+      <td><td>
+      <td><td>
+    </tr>
+  <% end %>
+</table>

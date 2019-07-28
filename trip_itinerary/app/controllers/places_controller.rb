@@ -1,3 +1,4 @@
+
 class PlacesController < ApplicationController
     def new
         @place = Place.new
@@ -13,19 +14,29 @@ class PlacesController < ApplicationController
     def result
         @from = params[:from]
         @to = params[:to]
+        @duration = (DateTime.strptime(@to, '%Y-%m-%d') - DateTime.strptime(@from, '%Y-%m-%d')).to_i
         @names = params[:name]
-        @coords_collection = [];
-        addresses = []
-;
+        @plan = Hash.new(0)
+        @sort_coords = [];
+
         @names.each do |name|
-            coords = Geocoder.search(name)
-            @coords_collection << coords.first.coordinates
-            # [latitude, longitude]
+            if !@plan.has_key? (name)
+                @plan[name] = Hash.new(0)
+            end
         end
 
-        @coords_collection.each do |coord|
-            address = Geocoder.search(coord)
-            addresses << address.first.address
+        @plan.each do |place, values|
+            @plan[place][:coordinates] = Geocoder.search(place).first.coordinates
+            @plan[place][:address] = Geocoder.search(@plan[place][:coordinates]).first.address
+            @sort_coords << @plan[place][:coordinates]
+        end
+
+        @sort_coords.sort_by(&:first).each do |coord|
+            @names.each do |name|
+                if @plan[name][:coordinates] == coord
+                    # p @plan[name]
+                end
+            end
         end
     end
 
@@ -34,4 +45,11 @@ class PlacesController < ApplicationController
     def place_params
         params.require(:place).permit(:name, :longitude, :latitude, :address)
     end
+
+    # def distance(coords_collection)
+    #     coords = coords_collection.sort_by(&:first)
+    #     coords.each do |coord|
+    #         dist_between = Geocoder::Calculations.distance_between(coords[0], coord)
+    #     end
+    # end
 end
