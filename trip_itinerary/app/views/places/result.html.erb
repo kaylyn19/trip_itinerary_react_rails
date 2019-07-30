@@ -10,18 +10,20 @@
 <script>
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    <% @sort_coords.each do |coord|%>
-      markers = handler.addMarkers([
+
+
+    <% @plan.each do |place, value| %>
+      lastMarker = handler.addMarkers([
         { 
-        "lat": <%= coord[0]%>,
-        "lng": <%= coord[1]%>,
-        "infowindow": "location"
-        }
+          "lat": <%= value[:coordinates][0] %>,
+          "lng": <%= value[:coordinates][1] %>,
+          "infowindow": "<%= place %>"
+         }
     ]);
 
     <% end %>
 
-    handler.bounds.extendWith(markers);
+    handler.bounds.extendWith(lastMarker);
     handler.fitMapToBounds();
 
     handler.getMap().setZoom(12)
@@ -35,10 +37,10 @@
     <th>Attractions<th>
     <th>Address<th>
   </tr>
-  <% for index in 1..@duration %>
+  <% for index in 0...@duration %>
     <tr>
-      <td><%= index%><td>
-      <td><td>
+      <td><%= index + 1%><td>
+      <td><%= @itinerary[index]%><td>
       <td><td>
     </tr>
   <% end %>

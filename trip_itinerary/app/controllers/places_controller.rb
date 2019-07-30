@@ -1,4 +1,4 @@
-
+require 'kmeans-clusterer'
 class PlacesController < ApplicationController
     def new
         @place = Place.new
@@ -8,6 +8,10 @@ class PlacesController < ApplicationController
         from = params[:from_date]
         to = params[:to_date]
         name = params.values[4..-4]
+        name.each do |place|
+            coord = Geocoder.search(place).first.coordinates
+            Place.find_or_create_by(name: place, address: Geocoder.search(coord).first.address, latitude: coord[0], longitude: coord[1])
+        end
         redirect_to result_path(from: from, to: to, name: name)
     end
 
@@ -17,7 +21,9 @@ class PlacesController < ApplicationController
         @duration = (DateTime.strptime(@to, '%Y-%m-%d') - DateTime.strptime(@from, '%Y-%m-%d')).to_i
         @names = params[:name]
         @plan = Hash.new(0)
-        @sort_coords = [];
+        @sort_coords = [] #@sort_coords.length => total number of places to visit
+        @labels = [];
+        @itinerary = []
 
         @names.each do |name|
             if !@plan.has_key? (name)
@@ -26,18 +32,29 @@ class PlacesController < ApplicationController
         end
 
         @plan.each do |place, values|
-            @plan[place][:coordinates] = Geocoder.search(place).first.coordinates
-            @plan[place][:address] = Geocoder.search(@plan[place][:coordinates]).first.address
+            query_Place = Place.find_by(name: place.titleize)
+            values[:coordinates] = [query_Place.latitude, query_Place.longitude]
+            values[:address] = query_Place.address
             @sort_coords << @plan[place][:coordinates]
         end
 
         @sort_coords.sort_by(&:first).each do |coord|
             @names.each do |name|
                 if @plan[name][:coordinates] == coord
-                    # p @plan[name]
+                    @labels << name
                 end
             end
         end
+
+        k = @duration # number of place to visit per day
+        kmeans = KMeansClusterer.run k, @sort_coords, labels: @labels, runs: 1
+
+        kmeans.clusters.each do |cluster|
+            # puts cluster.id.to_s + '. ' + cluster.points.map(&:label).join(", ") + "\t" + cluster.centroid.to_s
+            @itinerary << cluster.points.map(&:label).join(", ")
+        end
+        predicted = kmeans.predict [[@sort_coords[0][0], @sort_coords[0][1]]] 
+        # puts "\nSilhouette score: #{kmeans.silhouette.round(2)}"
     end
 
     private
@@ -45,11 +62,4 @@ class PlacesController < ApplicationController
     def place_params
         params.require(:place).permit(:name, :longitude, :latitude, :address)
     end
-
-    # def distance(coords_collection)
-    #     coords = coords_collection.sort_by(&:first)
-    #     coords.each do |coord|
-    #         dist_between = Geocoder::Calculations.distance_between(coords[0], coord)
-    #     end
-    # end
 end
