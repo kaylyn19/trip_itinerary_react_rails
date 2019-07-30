@@ -1,7 +1,12 @@
-<h1>Result</h1>
+<h1>Result of Your <%= @trip_name.titleize%> Trip</h1>
 
 <p>Yout trip is from <%= @from%> to <%= @to%> for <%= @duration%> days</p>
-<p>Your choice of attraction sites are: <%= @plan.keys.join(', ')%></p>
+<p>Your choice of attraction sites are:</p>
+<ul>
+  <% @plan.keys.map do |place|%>
+    <li><%= place.titleize%></li>
+  <% end %>
+</ul>
 
 <div style='width: 800px;'>
   <div id="map" style='width: 800px; height: 500px;'></div>
@@ -40,8 +45,35 @@
   <% for index in 0...@duration %>
     <tr>
       <td><%= index + 1%><td>
-      <td><%= @itinerary[index]%><td>
-      <td><td>
+      <td>
+         <ul>
+          <% @each_day[index].split(', ').each do |place|%>
+            <li><%= place.titleize%></li>
+          <% end %>
+         </ul>
+      <td>
+      <td>
+        <ul>
+          <% @each_day[index].split(', ').each do |place|%>
+            <li><%= Place.find_by(name: place.titleize).address%></li>
+          <% end %>
+        </ul>
+      <td>
     </tr>
   <% end %>
 </table>
+
+<%= form_with model: @itinerary, local: true do |form|%>
+  <%= form.hidden_field :name, value: params[:trip_name]%>
+  <%= form.submit%>
+<% end %>
+
+<%= form_with model: [@place, @itinerary, @destination], local: true do |form|%>
+  <%= form.hidden_field :from_date, DateTime.strptime(@from, '%Y-%m-%d') %>
+  <%= form.hidden_field :to_date, DateTime.strptime(@to, '%Y-%m-%d') %>
+  <% @labels.each do |place|%>
+    <%  find_place = Place.find_by(name: place.titleize)%>
+    <%= form.hidden_field :place_id, find_place.id%>
+  <% end %>
+  <%= form.submit "Save Itinerary"%>
+<% end %>

@@ -7,23 +7,28 @@ class PlacesController < ApplicationController
     def generate
         from = params[:from_date]
         to = params[:to_date]
-        name = params.values[4..-4]
+        name = params.values[5..-4]
+        trip_name = params[:name_of_trip]
         name.each do |place|
             coord = Geocoder.search(place).first.coordinates
             Place.find_or_create_by(name: place, address: Geocoder.search(coord).first.address, latitude: coord[0], longitude: coord[1])
         end
-        redirect_to result_path(from: from, to: to, name: name)
+        redirect_to result_path(from: from, to: to, name: name, trip_name: trip_name)
     end
 
     def result
+        @place = Place.new
+        @itinerary = Itinerary.new
+        @destination = Destination.new
         @from = params[:from]
         @to = params[:to]
         @duration = (DateTime.strptime(@to, '%Y-%m-%d') - DateTime.strptime(@from, '%Y-%m-%d')).to_i
         @names = params[:name]
+        @trip_name = params[:trip_name]
         @plan = Hash.new(0)
         @sort_coords = [] #@sort_coords.length => total number of places to visit
         @labels = [];
-        @itinerary = []
+        @each_day = []
 
         @names.each do |name|
             if !@plan.has_key? (name)
@@ -47,11 +52,11 @@ class PlacesController < ApplicationController
         end
 
         k = @duration # number of place to visit per day
-        kmeans = KMeansClusterer.run k, @sort_coords, labels: @labels, runs: 1
+        kmeans = KMeansClusterer.run k, @sort_coords, labels: @labels, runs: 10
 
         kmeans.clusters.each do |cluster|
             # puts cluster.id.to_s + '. ' + cluster.points.map(&:label).join(", ") + "\t" + cluster.centroid.to_s
-            @itinerary << cluster.points.map(&:label).join(", ")
+            @each_day << cluster.points.map(&:label).join(", ")
         end
         predicted = kmeans.predict [[@sort_coords[0][0], @sort_coords[0][1]]] 
         # puts "\nSilhouette score: #{kmeans.silhouette.round(2)}"

@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2019_07_30_014620) do
   enable_extension "plpgsql"
 
   create_table "destinations", force: :cascade do |t|
-    t.string "from_date"
-    t.string "to_date"
+    t.datetime "from_date"
+    t.datetime "to_date"
     t.bigint "place_id"
     t.bigint "itinerary_id"
     t.datetime "created_at", null: false
