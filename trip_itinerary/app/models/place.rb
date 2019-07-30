@@ -1,4 +1,5 @@
 class Place < ApplicationRecord
+    has_many :destinations, dependent: :nullify
     validates :name, presence: true, uniqueness: {case_sensitive: false}
     validates :latitude, :longitude, :latitude, presence: true
     geocoded_by :name
