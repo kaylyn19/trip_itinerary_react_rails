@@ -1,6 +1,6 @@
 class Place < ApplicationRecord
     has_many :destinations, dependent: :nullify
-    has_many :itineraries, through: :destinations
+    has_many :days, through: :destinations
     validates :name, presence: true, uniqueness: {case_sensitive: false}
     validates :latitude, :longitude, :latitude, presence: true
     geocoded_by :name

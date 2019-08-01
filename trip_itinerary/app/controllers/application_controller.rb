@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
     helper_method :user_signed_in?
 
     def authenticate!
-        redirect_to root_path, alert: "Not Authorized!" unless user_signed_in?
+        redirect_to new_session_path, alert: "Please sign in first to save your itinerary" unless user_signed_in?
     end
 end

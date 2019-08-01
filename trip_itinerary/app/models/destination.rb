@@ -1,9 +1,9 @@
 class Destination < ApplicationRecord
   belongs_to :place
-  belongs_to :itinerary
+  belongs_to :day
   
   validates :from_date, :to_date, presence: true
-  validates :itinerary_id, uniqueness: {scope: :place_id}
+  validates :day_id, uniqueness: {scope: :place_id}
   before_validation :duration
   private
 
