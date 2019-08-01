@@ -8,7 +8,6 @@ class PlacesController < ApplicationController
     def generate
         from = DateTime.strptime(params[:from_date], '%Y-%m-%d') #params[:from_date]
         to = DateTime.strptime(params[:to_date], '%Y-%m-%d') #params[:to_date]
-        byebug
         @duration = (to - from).to_i#(DateTime.strptime(@to, '%Y-%m-%d') - DateTime.strptime(@from, '%Y-%m-%d')).to_i
         names = params.values[5..-4]
         trip_name = params[:name_of_trip]
@@ -19,9 +18,10 @@ class PlacesController < ApplicationController
             @day = Day.new(
                 from_date: from + day,
                 to_date: from + day + 1,
-                itinerary_id: @itinerary.id
+                itinerary_id: @itinerary.id#,
+                # visit: @each_day[day]
             )
-            p "@day saved" if @day.save
+            @day.save
         end
 
         @trip_info = Hash.new(0)
@@ -63,25 +63,22 @@ class PlacesController < ApplicationController
 
         kmeans.clusters.each do |cluster|
             # puts cluster.id.to_s + '. ' + cluster.points.map(&:label).join(", ") + "\t" + cluster.centroid.to_s
-            @each_day << [cluster.points.map(&:label).join(", ")]
+            @each_day << cluster.points.map(&:label).join(", ")
         end
         predicted = kmeans.predict [[@sort_coords[0][0], @sort_coords[0][1]]] 
         # puts "\nSilhouette score: #{kmeans.silhouette.round(2)}"
 
-        # for index in 0...@each_day.length
-        #     @destination = Destination.new(
-        #         from_date: from + index, 
-        #         to_date: from + index + 1, 
-        #         itinerary_id: @itinerary.id,
-        #         place_id: 
-        #         @each_day[index].itineraryeach do |day|
-        #             day.each do |site|
-        #                 Place.find_by(name: site.titleize).id
-        #             end
-        #         end
-        #     )
-        #     @destination.save
-        # end
+        @each_day.each.with_index do |day, index|
+            split_site = day.split(',')
+            split_site.each do |site|
+                @destination = Destination.new(
+                    day_id: Day.find_by(itinerary_id: @itinerary.id).id, #do it again
+                    place_id: Place.find_by(name: site.titleize).id 
+                    )
+                    byebug
+                @destination.save
+            end
+        end
 
         redirect_to root_path #result_path(from: from, to: to, name: names, trip_name: trip_name)
     end
