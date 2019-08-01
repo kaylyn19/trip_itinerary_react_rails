@@ -1,6 +1,6 @@
 <h1>Add Attraction Sites</h1>
 
-<%= form_with url: '/places/generate', local: true do |form| %>
+<%= form_with model: @place, local: true do |form| %>
     <div>
         <%= form.label :name_of_trip%>
         <%= form.text_field :name_of_trip%>

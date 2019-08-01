@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
   get '/', {to: "home#new", as: 'root'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :places, only: [:new, :create] #do
-  #   resources :itineraries do
-  #     resources :destinations, only: [:create]
-  #   end
-  # end
-  resources :itineraries, only: [:create]
+  # resources :places, only: [:new, :create]
+  # resources :itineraries, only: [:show]
 
-  get '/places/result', {to: 'places#result', as: 'result'}
-  post '/places/generate', to: 'places#generate'
-  resources :users, only: [:new, :create]
-  resource :session, only: [:new, :create, :destroy]
-  # resources :destinations, only: [:create]
+  # resources :users, only: [:new, :create]
+  # resource :session, only: [:new, :create, :destroy]
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :users, only: [:create]
+    end
+  end
 end
