@@ -63,7 +63,7 @@ class PlacesController < ApplicationController
 
         kmeans.clusters.each do |cluster|
             # puts cluster.id.to_s + '. ' + cluster.points.map(&:label).join(", ") + "\t" + cluster.centroid.to_s
-            @each_day << cluster.points.map(&:label).join(", ")
+            @each_day << cluster.points.map(&:label).join(",")
         end
         predicted = kmeans.predict [[@sort_coords[0][0], @sort_coords[0][1]]] 
         # puts "\nSilhouette score: #{kmeans.silhouette.round(2)}"
@@ -71,11 +71,11 @@ class PlacesController < ApplicationController
         @each_day.each.with_index do |day, index|
             split_site = day.split(',')
             split_site.each do |site|
+                byebug
                 @destination = Destination.new(
-                    day_id: Day.find_by(itinerary_id: @itinerary.id).id, #do it again
+                    day_id: Day.where(itinerary_id: @itinerary.id)[index].id, #do it again
                     place_id: Place.find_by(name: site.titleize).id 
                     )
-                    byebug
                 @destination.save
             end
         end
