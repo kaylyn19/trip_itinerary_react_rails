@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import WelcomePage from '../WelcomePage'
 import SignUpPage from '../SignUpPage'
+import SignInPage from '../SignInPage'
 import { User } from '../../api';
+import AuthRoute from '../AuthRoute'
 
 export default class App extends Component{
     constructor(props) {
@@ -30,7 +32,8 @@ export default class App extends Component{
             <BrowserRouter>
                 <div>
                     <Switch>
-                        <Route to='/' component={WelcomePage}/>
+                        <Route exact to='/' component={WelcomePage}/>
+                        <Route exact to='/sign_in' component={SignInPage}/>
                         <Route to='/sign_up' 
                         render={(routeProps) => <SignUpPage onSignUp={this.getCurrentUser} {...routeProps}/>} />
                     </Switch>
