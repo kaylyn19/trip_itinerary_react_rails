@@ -4,7 +4,8 @@ import WelcomePage from '../WelcomePage'
 import SignUpPage from '../SignUpPage'
 import SignInPage from '../SignInPage'
 import { User } from '../../api';
-import AuthRoute from '../AuthRoute'
+import AuthRoute from '../AuthRoute';
+import PlanItineraryPage from '../PlanItineraryPage'
 
 export default class App extends Component{
     constructor(props) {
@@ -32,10 +33,10 @@ export default class App extends Component{
             <BrowserRouter>
                 <div>
                     <Switch>
-                        <Route exact to='/' component={WelcomePage}/>
-                        <Route exact to='/sign_in' component={SignInPage}/>
-                        <Route to='/sign_up' 
-                        render={(routeProps) => <SignUpPage onSignUp={this.getCurrentUser} {...routeProps}/>} />
+                        <Route exact path='/sign_up' render={(routeProps) => <SignUpPage onSignUp={this.getCurrentUser} {...routeProps}/>} />
+                        <Route  path='/sign_in' component={SignInPage}/>
+                        <AuthRoute path='/itineraries/new' isAuthenticated={this.state.currentUser} component={PlanItineraryPage}/>
+                        <Route exact path='/' component={WelcomePage}/>
                     </Switch>
                 </div>
             </BrowserRouter>

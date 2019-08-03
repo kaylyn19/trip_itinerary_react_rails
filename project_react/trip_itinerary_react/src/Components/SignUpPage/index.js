@@ -24,25 +24,25 @@ export default function SignUpPage(props) {
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="first_name">First Name</label>
-                <input type="text" name="first_name"/>>
+                <input type="text" name="first_name"/>
             </div>
             <div>
                 <label htmlFor="last_name">Last Name</label>
-                <input type="text" name="last_name"/>>
+                <input type="text" name="last_name"/>
             </div>
             <div>
                 <label htmlFor="email">Email</label>
-                <input type="email" name="email"/>>
+                <input type="email" name="email"/>
             </div>
             <div>
                 <label htmlFor="password">Password</label>
-                <input type="password" name="password"/>>
+                <input type="password" name="password"/>
             </div>
             <div>
                 <label htmlFor="password_confirmation">Password Confirmation</label>
-                <input type="password" name="password_confirmation"/>>
+                <input type="password" name="password_confirmation"/>
             </div>
-            <input type="submit" value="Sign Up"/>>
+            <input type="submit" value="Sign Up"/>
         </form>
     </main>
 }
