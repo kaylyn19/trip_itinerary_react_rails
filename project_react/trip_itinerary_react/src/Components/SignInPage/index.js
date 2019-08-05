@@ -5,9 +5,7 @@ export default function SignInPage() {
     function handlerSubmit(event) {
         event.preventDefault();
         const {currentTarget} = event;
-        console.log(currentTarget)
         const formData = new FormData(currentTarget)
-        console.log(formData.get('email'))
         Session.create({
             email: formData.get('email'),
             password: formData.get('password')

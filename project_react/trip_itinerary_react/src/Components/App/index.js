@@ -5,7 +5,8 @@ import SignUpPage from '../SignUpPage'
 import SignInPage from '../SignInPage'
 import { User } from '../../api';
 import AuthRoute from '../AuthRoute';
-import PlanItineraryPage from '../PlanItineraryPage'
+import PlanItineraryPage from '../PlanItineraryPage';
+import NavBar from '../NavBar'
 
 export default class App extends Component{
     constructor(props) {
@@ -18,6 +19,7 @@ export default class App extends Component{
 
     getCurrentUser() {
         User.current().then(user => {
+            console.log(user)
             if (user.id) {
                 this.setState({ currentUser: user})
             }
@@ -32,6 +34,7 @@ export default class App extends Component{
         return(
             <BrowserRouter>
                 <div>
+                    <NavBar/>
                     <Switch>
                         <Route exact path='/sign_up' render={(routeProps) => <SignUpPage onSignUp={this.getCurrentUser} {...routeProps}/>} />
                         <Route  path='/sign_in' component={SignInPage}/>

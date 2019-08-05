@@ -8,7 +8,6 @@ export const User = {
         }).then(res => res.json())
     },
     create(params) {
-        console.log(params)
         return fetch(`${BASE_URL}/users`, {
             method: 'POST',
             headers: {
@@ -21,15 +20,16 @@ export const User = {
 
 export const Session = {
     create(params) {
-        console.log(params)
         return fetch(`${BASE_URL}/session`, {
             method: 'POST',
-            credentials: 'include',
+            credentials: 'include', 
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(params)
-        }).then(res => res.json())
+        }).then(res => {
+            return res.json()
+        })
     }
 }
 
