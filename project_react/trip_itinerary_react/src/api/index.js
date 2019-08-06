@@ -35,6 +35,7 @@ export const Session = {
 
 export const Itinerary = {
     create(params) {
+        console.log(`itinerary params: ${params}`)
         return fetch(`${BASE_URL}/itineraries`, {
             method: 'POST',
             credentials: 'include',

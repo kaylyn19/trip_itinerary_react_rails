@@ -11,17 +11,18 @@ class Api::V1::ItinerariesController < Api::ApplicationController
             success = false
         end
 
-        places = params[:places]
+        places = params[:itinerary][:places]
         maps_info = []
         data = []
         labels = []
         each_day = []
-
+        p "places params #{places}"
         places.each do |place|
-            coord = Geocoder.search(place[:name]).first.coordinates
-            Place.find_or_create_by(name: place[:name], address: Geocoder.search(coord).first.address, latitude: coord[0], longitude: coord[1])
-            # maps_info[place[:name]] = coord
-            maps_info << [place[:name], coord] # ["central park", [x, y]]
+            p place
+            coord = Geocoder.search(place).first.coordinates
+            Place.find_or_create_by(name: place, address: Geocoder.search(coord).first.address, latitude: coord[0], longitude: coord[1])
+            # maps_info[place] = coord
+            maps_info << [place, coord] # ["central park", [x, y]]
         end
         from = DateTime.strptime(params[:itinerary][:start], '%Y-%m-%d')#itinerary.start
         to = DateTime.strptime(params[:itinerary][:end], '%Y-%m-%d')

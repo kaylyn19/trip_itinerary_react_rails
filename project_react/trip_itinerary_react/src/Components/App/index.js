@@ -38,7 +38,7 @@ export default class App extends Component{
                     <Switch>
                         <Route exact path='/sign_up' render={(routeProps) => <SignUpPage onSignUp={this.getCurrentUser} {...routeProps}/>} />
                         <Route  path='/sign_in' component={SignInPage}/>
-                        <AuthRoute path='/itineraries/new' isAuthenticated={this.state.currentUser} component={PlanItineraryPage}/>
+                        <AuthRoute path='/itineraries/new' isAuthenticated={true} component={PlanItineraryPage}/>
                         <Route exact path='/' component={WelcomePage}/>
                     </Switch>
                 </div>

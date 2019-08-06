@@ -9,14 +9,44 @@ export default class PlanItineraryPage extends Component {
                 name: '',
                 start: '',
                 end: '',
-                // places: []
+                places: []
             },
-            places: [],
+            // places: [],
             errors: []
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         // this.handlePlaceChange = this.handlePlaceChange.bind(this);
+    }
+
+    addPlace() {
+        this.setState({
+            newTrip: {
+                ...this.state.newTrip,
+                places: [...this.state.newTrip.places, ""]
+            }
+        })
+    }
+
+    removePlace(index) {
+        // this.state.places.splice(index, 1);
+        // this.setState({places: this.state.places})
+        this.state.newTrip.places.splice(index, 1);
+        this.setState({newTrip: {places: this.state.newTrip.places}})
+
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        console.log(this.state)
+        Itinerary.create(this.state.newTrip).then(trip => {
+            if (!trip.id) {
+                this.setState({ errors: trip.errors })
+            } else {
+                console.log('successfully saved!')
+                // this.props.history.push(`/itineraries/${trip.id}`)
+            }
+        })
     }
 
     handleChange(event) {
@@ -29,38 +59,17 @@ export default class PlanItineraryPage extends Component {
         })
     }
 
-    addPlace() {
-        this.setState({places: [...this.state.places, ""]})
-    }
-
-    removePlace(index) {
-        this.state.places.splice(index, 1);
-        console.log(this.state.places, '$$$$$$$')
-        this.setState({places: this.state.places})
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-        Itinerary.create(this.state.newTrip).then(data => {
-            if (!data.id) {
-                this.setState({ errors: data.errors })
-            } else {
-                console.log('successfully saved!')
-                // this.props.history.push(`/itineraries/${data.id}`)
-            }
-        })
-    }
-
     handlePlaceChange(event, index) {
         event.preventDefault();
-        this.state.places[index] = event.target.value;
-        console.log(`this.state.places[index] ${this.state.places[index]}`)
-        console.log(`event.target.value ${event.target.value}`)
-        Itinerary.create(this.state.places).then(place => {
-            console.log(place)
-            this.setState({places: this.state.places})
+        const inputValue = event.target.value;
+        let newPlaces = [...this.state.newTrip.places] //copy places array
+        newPlaces[index] = inputValue; // update changed place
+        this.setState({
+            newTrip: {
+                ...this.state.newTrip,
+                places: newPlaces,
+            }
         })
-        // this.setState({places: this.state.places})
     }
 
     render() {
@@ -68,23 +77,23 @@ export default class PlanItineraryPage extends Component {
             <main className='page'>
                 <form onSubmit={this.handleSubmit}>
                     <div>
-                        <label htmlFor='trip_name'>Name of your Trip</label>
-                        <input type='text' name='trip_name' value={this.state.newTrip.trip_name} onChange={this.handleChange} />
+                        <label htmlFor='name'>Name of your Trip</label>
+                        <input type='text' name='name' value={this.state.newTrip.name} onChange={this.handleChange} />
                     </div>
                     <div>
-                        <label htmlFor='start_date'>From</label>
-                        <input type='text' name='start_date' placeholder='2019-02-01' value={this.state.newTrip.start} onChange={this.handleChange} />
+                        <label htmlFor='start'>From</label>
+                        <input type='text' name='start' placeholder='YYYY-MM-DD' value={this.state.newTrip.start} onChange={this.handleChange} />
                     </div>
                     <div>
-                        <label htmlFor='end_date'>To</label>
-                        <input type='text' name='end_date' placeholder='2019-02-10' value={this.state.newTrip.end} onChange={this.handleChange} />
+                        <label htmlFor='end'>To</label>
+                        <input type='text' name='end' placeholder='YYYY-MM-DD' value={this.state.newTrip.end} onChange={this.handleChange} />
                     </div>
                     <div>
                         <label htmlFor='name'>Enter places you want to visit: </label>
                         {/** <input value={this.state.places} type='text' name='name' onChange={this.handlePlaceChange}/>*/}
                         
                         {
-                            this.state.places.map((place, index) => {
+                            this.state.newTrip.places.map((place, index) => {
                                 return(
                                     <div key={index}>
                                         <input value={place.name} type='text' name='name' onChange={e => this.handlePlaceChange(e, index)}/>
