@@ -35,13 +35,12 @@ export default class PlanItineraryPage extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state)
         Itinerary.create(this.state.newTrip).then(trip => {
             if (!trip.id) {
                 this.setState({ errors: trip.errors })
             } else {
                 console.log('successfully saved!')
-                // this.props.history.push(`/itineraries/${trip.id}`)
+                this.props.history.push(`/itineraries/${trip.id}`)
             }
         })
     }

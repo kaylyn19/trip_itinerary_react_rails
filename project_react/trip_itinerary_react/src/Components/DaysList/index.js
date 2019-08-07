@@ -1,12 +1,13 @@
 import React from 'react';
 import DaysDetails from '../DaysDetails';
 import PlaceList from '../PlaceList';
+import MapContainer from '../MapContainer'
 
 export default function DaysList(props) {
     const {days} = props;
 
     if (!days) {
-        return(<div>{console.log('empty')}</div>)
+        return(<div></div>)
     } else {
         return(
             <table>
@@ -23,7 +24,8 @@ export default function DaysList(props) {
                         <tr key={day.id}>
                             <td><DaysDetails from_date={day.from_date}/></td>
                             <td><DaysDetails from_date={day.to_date}/></td>
-                            <td><PlaceList places={day.places} /></td>
+                            <td><PlaceList places={day.places} /></td><br/>
+                            <td><MapContainer coordinates={day.places}/></td>
                         </tr>
                     )
                 })}

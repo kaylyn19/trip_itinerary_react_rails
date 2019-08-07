@@ -1,7 +1,7 @@
 import React from 'react';
 import ItineraryDetails from '../ItineraryDetails'
 import { Itinerary } from '../../api';
-import DaysList from '../DaysList'
+import DaysList from '../DaysList';
 
 export default class ItineraryShowPage extends React.Component {
     constructor(props) {
