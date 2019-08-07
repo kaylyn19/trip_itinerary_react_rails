@@ -7,6 +7,7 @@ import { User } from '../../api';
 import AuthRoute from '../AuthRoute';
 import PlanItineraryPage from '../PlanItineraryPage';
 import NavBar from '../NavBar'
+import ItineraryShowPage from '../ItineraryShowPage'
 
 export default class App extends Component{
     constructor(props) {
@@ -19,7 +20,6 @@ export default class App extends Component{
 
     getCurrentUser() {
         User.current().then(user => {
-            console.log(user)
             if (user.id) {
                 this.setState({ currentUser: user})
             }
@@ -38,7 +38,8 @@ export default class App extends Component{
                     <Switch>
                         <Route exact path='/sign_up' render={(routeProps) => <SignUpPage onSignUp={this.getCurrentUser} {...routeProps}/>} />
                         <Route  path='/sign_in' component={SignInPage}/>
-                        <AuthRoute path='/itineraries/new' isAuthenticated={true} component={PlanItineraryPage}/>
+                        <AuthRoute exact path='/itineraries/new' isAuthenticated={this.state.currentUser} component={PlanItineraryPage}/>
+                        <Route exact path='/itineraries/:id' component={ItineraryShowPage}/>
                         <Route exact path='/' component={WelcomePage}/>
                     </Switch>
                 </div>

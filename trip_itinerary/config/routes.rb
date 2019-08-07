@@ -7,7 +7,7 @@ Rails.application.routes.draw do
         get :current, on: :collection
       end      
       resource :session, only: [:create, :destroy]
-      resources :itineraries, only: [:create]
+      resources :itineraries, only: [:create, :show]
     end
   end
 end

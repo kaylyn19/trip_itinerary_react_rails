@@ -11,7 +11,6 @@ export default class PlanItineraryPage extends Component {
                 end: '',
                 places: []
             },
-            // places: [],
             errors: []
         }
         this.handleChange = this.handleChange.bind(this);
@@ -29,8 +28,6 @@ export default class PlanItineraryPage extends Component {
     }
 
     removePlace(index) {
-        // this.state.places.splice(index, 1);
-        // this.setState({places: this.state.places})
         this.state.newTrip.places.splice(index, 1);
         this.setState({newTrip: {places: this.state.newTrip.places}})
 

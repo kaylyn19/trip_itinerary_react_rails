@@ -1,7 +1,7 @@
 require 'kmeans-clusterer'
 
 class Api::V1::ItinerariesController < Api::ApplicationController
-    before_action :authenticate!
+    before_action :authenticate!, only: [:create]
     def create
         success = true
         # render json: params
@@ -16,9 +16,8 @@ class Api::V1::ItinerariesController < Api::ApplicationController
         data = []
         labels = []
         each_day = []
-        p "places params #{places}"
+
         places.each do |place|
-            p place
             coord = Geocoder.search(place).first.coordinates
             Place.find_or_create_by(name: place, address: Geocoder.search(coord).first.address, latitude: coord[0], longitude: coord[1])
             # maps_info[place] = coord
@@ -73,6 +72,11 @@ class Api::V1::ItinerariesController < Api::ApplicationController
         else
             render json: {error: "Error!!!!!!"}, status: 400
         end
+    end
+
+    def show
+        itinerary = Itinerary.find params[:id]
+        render json: itinerary, include: '**'
     end
 
     private

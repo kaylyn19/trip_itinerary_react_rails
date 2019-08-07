@@ -35,7 +35,6 @@ export const Session = {
 
 export const Itinerary = {
     create(params) {
-        console.log(`itinerary params: ${params}`)
         return fetch(`${BASE_URL}/itineraries`, {
             method: 'POST',
             credentials: 'include',
@@ -43,6 +42,11 @@ export const Itinerary = {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({itinerary: params})
+        }).then(res => res.json())
+    },
+    show(id) {
+        return fetch(`${BASE_URL}/itineraries/${id}`, {
+            credentials: 'include'
         }).then(res => res.json())
     }
 }
