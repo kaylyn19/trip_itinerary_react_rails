@@ -24,11 +24,11 @@ export default function DaysList(props) {
                         <tr key={day.id}>
                             <td><DaysDetails from_date={day.from_date}/></td>
                             <td><DaysDetails from_date={day.to_date}/></td>
-                            <td><PlaceList places={day.places} /></td><br/>
-                            <td><MapContainer coordinates={day.places}/></td>
+                            <td><PlaceList places={day.places} /></td>
                         </tr>
                     )
                 })}
+                    <div><MapContainer days={days}/></div>
                 </tbody>
             </table>
         )    

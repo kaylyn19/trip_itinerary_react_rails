@@ -7,35 +7,43 @@ class MapContainer extends Component {
     constructor(props) {
         super(props)
 
-        const {coordinates} = props;
+        const {days} = props;
         const coord_set = [];
-        coordinates.map(coord => {
-            coord_set.push([coord.latitude, coord.longitude, coord.name])
+        days.map((each_day, index) => {
+            // console.log(each_day.places[index])
+            each_day.places.map(place => {
+                console.log(place.latitude)
+                coord_set.push([place.latitude, place.longitude, place.name])
+            })
         })
 
-        this.state = coord_set    
+        this.state = {
+            coordinates: coord_set,
+            showingInfoWindow: false,
+            activeMarker: {},
+            selectedPlace: {},
+        }    
+        this.onMarkerClick = this.onMarkerClick.bind(this);
     }
 
-    displayMarkers = () => {
-        return this.state.map((coord, index) => {
-            return <Marker key={index} id={index} position={{
-                lat: coord.latitude,
-                lng: coord.longitude
-            }}
-            onClick={() => console.log("location")}
-            />
+    onMarkerClick = (props, marker, e) => {
+        this.setState({
+            selectedPlace: props,
+            activeMarker: marker,
+            showingInfoWindow: true
         })
     }
 
     render() {
-        console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
         return(
-            <Map 
-                google={this.props.google}
-                zoom={8}
-                style={{width: '800px', height: '500px'}}
-            >
-                {this.displayMarkers()}
+            <Map google={this.props.google} zoom={12} style={{width: '800px', height: '500px'}} initialCenter={{lat: this.state.coordinates[0][0], lng: this.state.coordinates[0][1]}}>
+                {
+                    this.state.coordinates.map((coord, index) => {
+                        return(
+                            <Marker onClick={this.onMarkerClick} name={coord[2]} position={{lat: coord[0], lng: coord[1]}}/>
+                        )
+                    })
+                }
             </Map>
         )
     }
