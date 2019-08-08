@@ -36,7 +36,7 @@ export const Session = {
             return res.json()
         })
     },
-    destroy(id) {
+    destroy() {
         return fetch(`${BASE_URL}/session`, {
             method: 'DELETE',
             credentials: 'include'

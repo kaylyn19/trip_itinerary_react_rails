@@ -31,11 +31,17 @@ export default class App extends Component{
         this.getCurrentUser()
     }
 
+    signOut = () => {
+        this.setState({
+            currentUser: null
+        })
+    }
+
     render() {
         return(
             <BrowserRouter>
                 <div>
-                    <NavBar currentUser={this.state.currentUser} />
+                    <NavBar currentUser={this.state.currentUser} onSignOut={this.signOut} />
                     <Switch>
                         <Route exact path='/sign_up' render={(routeProps) => <SignUpPage onSignUp={this.getCurrentUser} {...routeProps}/>} />
                         <Route  path='/sign_in' render={(routeProps) => (<SignInPage {...routeProps} onSignIn={this.getCurrentUser}/>)} />

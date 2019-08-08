@@ -38,14 +38,13 @@ class MapContainer extends Component {
                 {
                     this.state.coordinates.map((coord, index) => {
                         return(
-                            <>
-                                <Marker onClick={this.onMarkerClick} name={coord[2]} position={{lat: coord[0], lng: coord[1]}}/>
-                                <InfoWindow
-                                    marker={this.state.activeMarker}
-                                    visible={this.state.showingInfoWindow}>
-                                    <div><h1>{this.state.selectedPlace.name}</h1></div> 
-                                </InfoWindow>
-                            </>
+                                <Marker onClick={this.onMarkerClick} name={coord[2]} position={{lat: coord[0], lng: coord[1]}}>
+                                    <InfoWindow
+                                        marker={this.state.activeMarker}
+                                        visible={this.state.showingInfoWindow}>
+                                        <div><h1>{this.state.selectedPlace.name}</h1></div> 
+                                    </InfoWindow>
+                                </Marker>
                         )
                     })
                 }

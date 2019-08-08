@@ -1,8 +1,16 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { Session } from '../../api';
 
 export default function NavBar(props) {
-    const { currentUser } = props
+    const { currentUser, onSignOut } = props
+    function handleSignout(event) {
+        event.preventDefault();
+        Session.destroy().then(() => {
+            onSignOut();
+        })
+    }
+
     if (currentUser) {
         return(
             <div>
@@ -12,7 +20,7 @@ export default function NavBar(props) {
                 |
                 <Link to='/my_itineraries'>My Itineraries</Link>
                 |
-                <Link to='#'>Sign Out</Link>
+                <Link onClick={handleSignout}>Sign Out</Link>
                 |
                 <div>Signed in as: {currentUser.full_name}</div>
             </div>
