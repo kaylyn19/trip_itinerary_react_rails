@@ -51,6 +51,7 @@ export default class PlanItineraryPage extends Component {
     }
 
     handleChange(event) {
+        event.preventDefault()
         const newData = {[event.target.name]: event.target.value}
         this.setState({
             newTrip: {

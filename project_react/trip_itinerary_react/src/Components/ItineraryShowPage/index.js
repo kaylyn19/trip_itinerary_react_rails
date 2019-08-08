@@ -35,6 +35,7 @@ export default class ItineraryShowPage extends React.Component {
                     end={this.state.itineraries.end}
                 />
                 <DaysList days={this.state.itineraries.days}/>
+                <input type="submit" value="Delete"/>
             </main>
         )
     }
