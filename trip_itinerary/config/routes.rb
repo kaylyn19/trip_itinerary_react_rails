@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:create] do
         get :current, on: :collection
+        get :user_itinerary
       end      
       resource :session, only: [:create, :destroy]
       resources :itineraries, only: [:create, :show]

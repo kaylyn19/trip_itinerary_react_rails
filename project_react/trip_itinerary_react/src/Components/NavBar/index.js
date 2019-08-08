@@ -1,7 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default function NavBar() {
+export default function NavBar(props) {
+    const { currentUser } = props
+
+    if (currentUser) {
+        return(
+            <div>
+                <Link to='/my_itineraries'>My Itineraries</Link>
+                <Link to='#'>Sign Out</Link>
+            </div>
+        )
+    }
     return(
         <div>
             <Link to='/'>Home</Link>

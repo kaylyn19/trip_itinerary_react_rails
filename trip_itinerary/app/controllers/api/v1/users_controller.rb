@@ -15,6 +15,11 @@ class Api::V1::UsersController < Api::ApplicationController
         end
     end
 
+    def user_itinerary
+        user_itinerary = Itinerary.where(user_id: current_user.id)
+        render json: user_itinerary
+    end
+
     private
 
     def user_params

@@ -27,13 +27,13 @@ class Api::V1::ItinerariesController < Api::ApplicationController
         to = DateTime.strptime(params[:itinerary][:end], '%Y-%m-%d')
 
         duration = (to - from).to_i
-        for day in 0...duration
-            day = Day.new(
-                from_date: from + day,
-                to_date: from + day + 1,
+        for day_count in 0...duration
+            day_db = Day.new(
+                from_date: from + day_count,
+                to_date: from + day_count + 1,
                 itinerary_id: itinerary.id
             )
-            if !day.save
+            if !day_db.save
                 success = false
             end
         end
@@ -53,7 +53,7 @@ class Api::V1::ItinerariesController < Api::ApplicationController
             each_day << cluster.points.map(&:label).join(",")
         end
         predicted = kmeans.predict [data[0]] 
-
+        
         each_day.each.with_index do |day, index|
             split_site = day.split(',')
             split_site.each do |site|
@@ -66,7 +66,6 @@ class Api::V1::ItinerariesController < Api::ApplicationController
                     end
             end
         end
-
         if success
             render json: {status: 200, id: itinerary.id}, status: 200
         else

@@ -29,7 +29,12 @@ export default class PlanItineraryPage extends Component {
 
     removePlace(index) {
         this.state.newTrip.places.splice(index, 1);
-        this.setState({newTrip: {places: this.state.newTrip.places}})
+        this.setState({
+            newTrip: {
+                ...this.state.newTrip,
+                places: this.state.newTrip.places
+            }
+        })
 
     }
 

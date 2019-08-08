@@ -15,6 +15,11 @@ export const User = {
             },
             body: JSON.stringify({user: params})
         }).then(res => res.json())
+    },
+    show(id) {
+        return fetch(`${BASE_URL}/users/${id}/user_itinerary`, {
+            credentials: 'include'
+        }).then(res => res.json())
     }
 }
 
@@ -35,6 +40,7 @@ export const Session = {
 
 export const Itinerary = {
     create(params) {
+        console.log(params)
         return fetch(`${BASE_URL}/itineraries`, {
             method: 'POST',
             credentials: 'include',
