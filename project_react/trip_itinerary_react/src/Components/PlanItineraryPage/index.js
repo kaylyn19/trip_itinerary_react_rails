@@ -18,7 +18,8 @@ export default class PlanItineraryPage extends Component {
         // this.handlePlaceChange = this.handlePlaceChange.bind(this);
     }
 
-    addPlace() {
+    addPlace(event) {
+        event.preventDefault()
         this.setState({
             newTrip: {
                 ...this.state.newTrip,
@@ -28,6 +29,7 @@ export default class PlanItineraryPage extends Component {
     }
 
     removePlace(index) {
+        index.preventDefault();
         this.state.newTrip.places.splice(index, 1);
         this.setState({
             newTrip: {
