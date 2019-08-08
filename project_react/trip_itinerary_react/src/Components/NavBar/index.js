@@ -7,7 +7,12 @@ export default function NavBar(props) {
     if (currentUser) {
         return(
             <div>
+                <Link to='/'>Home</Link>
+                |
+                <Link to='/itineraries/new'>Create Itinerary</Link>
+                |
                 <Link to='/my_itineraries'>My Itineraries</Link>
+                |
                 <Link to='#'>Sign Out</Link>
             </div>
         )
@@ -21,8 +26,6 @@ export default function NavBar(props) {
             <Link to='/sign_in'>Sign In</Link>
             |
             <Link to='/sign_up'>Sign Up</Link>
-            |
-
         </div>
     )
 }
