@@ -35,6 +35,12 @@ export const Session = {
         }).then(res => {
             return res.json()
         })
+    },
+    destroy(id) {
+        return fetch(`${BASE_URL}/session`, {
+            method: 'DELETE',
+            credentials: 'include'
+        }).then(res => res.json())
     }
 }
 

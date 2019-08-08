@@ -3,7 +3,6 @@ import {User} from '../../api'
 
 export default function SignUpPage(props) {
     const {onSignUp} = props;
-    console.log(onSignUp)
     function handleSubmit(event) {
         event.preventDefault();
         const {currentTarget} = event;
@@ -15,7 +14,10 @@ export default function SignUpPage(props) {
             password: formData.get('password'),
             password_confirmation: formData.get('password_confirmation')
         }).then(res => {
-            onSignUp();
+            if (res.id) {
+                onSignUp();
+                props.history.push('/')
+            }
         })
     }
     

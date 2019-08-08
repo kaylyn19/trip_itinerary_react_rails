@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 
 export default function NavBar(props) {
     const { currentUser } = props
-
     if (currentUser) {
         return(
             <div>
@@ -14,6 +13,8 @@ export default function NavBar(props) {
                 <Link to='/my_itineraries'>My Itineraries</Link>
                 |
                 <Link to='#'>Sign Out</Link>
+                |
+                <div>Signed in as: {currentUser.full_name}</div>
             </div>
         )
     }

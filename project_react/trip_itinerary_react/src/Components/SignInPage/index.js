@@ -1,7 +1,10 @@
 import React from 'react';
-import {Session} from '../../api'
+import {Session} from '../../api';
+import {Redirect} from 'react-router-dom'
 
-export default function SignInPage() {
+export default function SignInPage(props) {
+    const {onSignIn} = props;
+
     function handlerSubmit(event) {
         event.preventDefault();
         const {currentTarget} = event;
@@ -9,8 +12,14 @@ export default function SignInPage() {
         Session.create({
             email: formData.get('email'),
             password: formData.get('password')
+        }).then(res => {
+            if (res.id) {
+                onSignIn();
+                props.history.push('/')
+            }
         })
     }
+
     return(
         <main classNmae="page">
             <h1>Sign In</h1>

@@ -19,6 +19,9 @@ export default class MyItineraries extends Component {
     }
 
     render() {
+        if (this.state.trips.length === 0) {
+            return <h1>Your list is empty!</h1>
+        }
         return(
             <div>
                 {this.state.trips.map(trip => {
