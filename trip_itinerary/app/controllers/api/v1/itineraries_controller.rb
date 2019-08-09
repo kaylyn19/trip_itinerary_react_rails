@@ -2,6 +2,7 @@ require 'kmeans-clusterer'
 
 class Api::V1::ItinerariesController < Api::ApplicationController
     before_action :authenticate!, only: [:create]
+    before_action :find_id, except: [:create]
     def create
         success = true
         # render json: params
@@ -74,13 +75,21 @@ class Api::V1::ItinerariesController < Api::ApplicationController
     end
 
     def show
-        itinerary = Itinerary.find params[:id]
-        render json: itinerary, include: '**'
+        render json: @itinerary, include: '**'
+    end
+
+    def destroy
+        @itinerary.destroy
+        render json: {status: 200}, status: 200
     end
 
     private
 
     def itinerary_params
         params.require(:itinerary).permit(:name, :start, :end)
+    end
+
+    def find_id
+        @itinerary = Itinerary.find params[:id]
     end
 end

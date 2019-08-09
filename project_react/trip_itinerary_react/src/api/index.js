@@ -60,5 +60,11 @@ export const Itinerary = {
         return fetch(`${BASE_URL}/itineraries/${id}`, {
             credentials: 'include'
         }).then(res => res.json())
+    },
+    destroy(id) {
+        return fetch(`${BASE_URL}/itineraries/${id}`, {
+            method: 'DELETE',
+            credentials: 'include'
+        }).then(res => res.json())
     }
 }

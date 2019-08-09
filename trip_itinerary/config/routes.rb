@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         get :user_itinerary
       end      
       resource :session, only: [:create, :destroy]
-      resources :itineraries, only: [:create, :show]
+      resources :itineraries, only: [:create, :show, :destroy]
     end
   end
 end
