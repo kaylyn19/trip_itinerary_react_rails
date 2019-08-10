@@ -1,7 +1,7 @@
 import React from 'react';
 import DaysDetails from '../DaysDetails';
 import PlaceList from '../PlaceList';
-import MapContainer from '../MapContainer'
+import MapContainer from '../MapContainer';
 
 export default function DaysList(props) {
     const {days, onDelete} = props;
@@ -14,8 +14,7 @@ export default function DaysList(props) {
                 <table>
                     <thead>
                         <tr>
-                            <th>From</th>
-                            <th>To</th>
+                            <th>Date</th>
                             <th>Places to Visit</th>
                         </tr>
                         </thead>
@@ -23,8 +22,7 @@ export default function DaysList(props) {
                     {days.map(day => {
                         return(
                             <tr key={day.id}>
-                                <td><DaysDetails from_date={day.from_date}/></td>
-                                <td><DaysDetails from_date={day.to_date}/></td>
+                                <td><DaysDetails from_date={day.from_date} to_date={day.to_date}/></td>
                                 <td><PlaceList places={day.places} /></td>
                             </tr>
                         )

@@ -6,6 +6,7 @@
     "@types/react-router-dom": "^4.3.4",
     "dotenv": "^8.0.0",
     "google-maps-react": "^2.0.2",
+    "luxon": "^1.17.2",
     "office-ui-fabric-react": "^7.22.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

@@ -1,11 +1,12 @@
 import React from 'react';
+import {DateTime} from 'luxon';
 
 export default function DaysDetails(props) {
     const {from_date, to_date} = props;
     return(
         <div>
-            <p>{from_date}</p>
-            <p>{to_date}</p>
+            <p>From: {DateTime.fromISO(from_date, {zone: 'utc'}).toFormat('LLL dd yyyy')}</p>
+            <p>To: {DateTime.fromISO(to_date, {zone: 'utc'}).toFormat('LLL dd yyyy')}</p>
         </div>
     )
 }

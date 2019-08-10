@@ -27,7 +27,6 @@ export default class ItineraryShowPage extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         if (!this.state.itineraries.id) {
             return(
                 <main className="page">

@@ -33,8 +33,8 @@ class MapContainer extends Component {
     }
 
     render() {
-        return(
-            <Map google={this.props.google} zoom={12} style={{width: '800px', position: 'relative', height: '500px'}} initialCenter={{lat: this.state.coordinates[0][0], lng: this.state.coordinates[0][1]}}>
+        return( <div>
+            {/*<Map google={this.props.google} zoom={12} style={{width: '800px', position: 'relative', height: '500px'}} initialCenter={{lat: this.state.coordinates[0][0], lng: this.state.coordinates[0][1]}}>
                 {
                     this.state.coordinates.map((coord, index) => {
                         return(
@@ -50,11 +50,14 @@ class MapContainer extends Component {
                 </InfoWindow>
 
                <button onClick={this.props.onDeleteClick} >Delete</button>
-            </Map>
+            </Map>*/}
+            </div>
         )
     }
 }
 
-export default GoogleApiWrapper({
-    apiKey: API_KEY
-})(MapContainer)
+export default MapContainer
+
+// export default GoogleApiWrapper({
+//     apiKey: API_KEY
+// })(MapContainer)
