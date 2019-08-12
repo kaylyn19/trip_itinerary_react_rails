@@ -8,7 +8,7 @@ export default class ItineraryShowPage extends React.Component {
         super(props)
     
         this.state = {
-            itineraries: {}
+            itineraries: {},
         }    
     }
 
@@ -34,6 +34,7 @@ export default class ItineraryShowPage extends React.Component {
                 </main>
             )
         }
+
         return(
             <main className="page" style={{display: "flex", flexDirection: "column"}}>
                 <ItineraryDetails 

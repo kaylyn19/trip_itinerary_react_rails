@@ -8,7 +8,8 @@ import AuthRoute from '../AuthRoute';
 import PlanItineraryPage from '../PlanItineraryPage';
 import NavBar from '../NavBar'
 import ItineraryShowPage from '../ItineraryShowPage';
-import MyItineraries from '../MyItineraries'
+import MyItineraries from '../MyItineraries';
+
 
 export default class App extends Component{
     constructor(props) {

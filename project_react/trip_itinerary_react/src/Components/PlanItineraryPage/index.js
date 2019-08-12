@@ -15,7 +15,6 @@ export default class PlanItineraryPage extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.handlePlaceChange = this.handlePlaceChange.bind(this);
     }
 
     addPlace(event) {
@@ -46,7 +45,6 @@ export default class PlanItineraryPage extends Component {
             if (!trip.id) {
                 this.setState({ errors: trip.errors })
             } else {
-                console.log('successfully saved!')
                 this.props.history.push(`/itineraries/${trip.id}`)
             }
         })
@@ -78,8 +76,8 @@ export default class PlanItineraryPage extends Component {
 
     render() {
         return(
-            <main className='page'>
-                <form onSubmit={this.handleSubmit}>
+            <main className='itinerary'>
+                <form className="itinerary form" onSubmit={this.handleSubmit}>
                     <div>
                         <label htmlFor='name'>Name of your Trip</label>
                         <input type='text' name='name' value={this.state.newTrip.name} onChange={this.handleChange} />
