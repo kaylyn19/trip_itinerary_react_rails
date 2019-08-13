@@ -6,14 +6,17 @@ import DaysList from '../DaysList';
 export default class ItineraryShowPage extends React.Component {
     constructor(props) {
         super(props)
-    
+
         this.state = {
             itineraries: {},
         }    
     }
 
     componentDidMount() {
+        // const {startLoading, stopLoading} = this.props;
+        // startLoading();
         Itinerary.show(this.props.match.params.id).then(trip => {
+            // stopLoading();
             this.setState({itineraries: trip})
         })
     }

@@ -4,6 +4,7 @@ import {Itinerary} from '../../api'
 export default class PlanItineraryPage extends Component {
     constructor(props) {
         super(props)
+
         this.state = {
             newTrip: {
                 name: '',
@@ -40,8 +41,11 @@ export default class PlanItineraryPage extends Component {
     }
 
     handleSubmit(event) {
+        const {startLoading, stopLoading} = this.props;
         event.preventDefault();
+        startLoading();
         Itinerary.create(this.state.newTrip).then(trip => {
+            stopLoading();
             if (!trip.id) {
                 this.setState({ errors: trip.errors })
             } else {

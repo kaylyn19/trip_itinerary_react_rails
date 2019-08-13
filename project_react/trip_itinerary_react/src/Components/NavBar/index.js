@@ -33,7 +33,8 @@ export default function NavBar(props) {
                             </NavDropdown>
                         </Form>
                     </Navbar.Collapse>
-            </Navbar>         )
+            </Navbar>         
+            )
     }
     return(
         <Navbar bg="light" expand="lg">
@@ -43,7 +44,7 @@ export default function NavBar(props) {
                 <Nav className="mr-auto">
                     {/* You need as={Link} to be able to use routerlink + bootstrap navlink */}
                     {/* <Nav.Link  as={Link} to='/itineraries/new' >Create Itinerary</Nav.Link>  */}
-                    <Nav.Link as={Link} to='/my_itineraries'>My Itineraries</Nav.Link>
+                    <Nav.Link  as={Link} to='/itineraries/new' >Create Itinerary</Nav.Link> 
                 </Nav>
                 <Form inline className="dropleft">
                     <NavDropdown title="Actions" id="basic-nav-dropdown"> 

@@ -4,8 +4,6 @@ import {Link} from 'react-router-dom'
 
 export default class MyItineraries extends Component {
     constructor(props) {
-        const {currentUser} = props;
-
         super(props)
         this.state = {
             trips: []
@@ -13,7 +11,10 @@ export default class MyItineraries extends Component {
     }
 
     componentDidMount() {
+        // const {startLoading, stopLoading } = this.props;
+        // startLoading()
         User.show(this.props.match.params.id).then(list => {
+            // stopLoading();
             this.setState({trips: list})
         })
     }

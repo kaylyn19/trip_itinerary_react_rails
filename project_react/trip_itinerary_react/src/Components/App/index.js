@@ -9,13 +9,15 @@ import PlanItineraryPage from '../PlanItineraryPage';
 import NavBar from '../NavBar'
 import ItineraryShowPage from '../ItineraryShowPage';
 import MyItineraries from '../MyItineraries';
+import Loading from '../Loading'
 
 
 export default class App extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            currentUser: null
+            currentUser: null,
+            isLoading: false
         }
         this.getCurrentUser = this.getCurrentUser.bind(this)
     }
@@ -38,17 +40,26 @@ export default class App extends Component{
         })
     }
 
+    startLoading = () => {
+        this.setState({ isLoading: true})
+    }
+
+    stopLoading = () => {
+        this.setState({ isLoading: false})
+    }
+
     render() {
         return(
             <BrowserRouter>
                 <div>
                     <NavBar currentUser={this.state.currentUser} onSignOut={this.signOut} />
+                    <Loading isLoading={this.state.isLoading}/>
                     <Switch>
                         <Route exact path='/sign_up' render={(routeProps) => <SignUpPage onSignUp={this.getCurrentUser} {...routeProps}/>} />
                         <Route  path='/sign_in' render={(routeProps) => (<SignInPage {...routeProps} onSignIn={this.getCurrentUser}/>)} />
-                        <AuthRoute exact path='/itineraries/new' isAuthenticated={this.state.currentUser} component={PlanItineraryPage}/>
-                        <Route exact path='/itineraries/:id' component={ItineraryShowPage}/>
-                        <Route path='/my_itineraries' component={MyItineraries} currentUser={this.state.currentUser}/>
+                        <AuthRoute exact path='/itineraries/new' isAuthenticated={this.state.currentUser} component={PlanItineraryPage} startLoading={this.startLoading} stopLoading={this.stopLoading} />
+                        <Route exact path='/itineraries/:id' component={ItineraryShowPage} startLoading={this.startLoading} stopLoading={this.stopLoading}/>
+                        <Route path='/my_itineraries' render={(routeProps) => <MyItineraries {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>
                         <Route exact path='/' component={WelcomePage}/>
                     </Switch>
                 </div>
