@@ -36,8 +36,8 @@ class MapContainer extends Component {
     render() {
         return( <div style={{position: "relative"}}>
                 <ButtonToolbar>
-                    <Button variant="success" onClick={this.props.onDeleteClick} >Delete</Button>
                     <Button variant="success">Edit</Button>
+                    <Button variant="success" onClick={this.props.onDeleteClick} >Delete</Button>
                 </ButtonToolbar>
                 <Map className="map" google={this.props.google} zoom={12} style={{width: '800px', position: 'relative', height: '500px'}} initialCenter={{lat: this.state.coordinates[0][0], lng: this.state.coordinates[0][1]}}>
                     {
