@@ -80,39 +80,44 @@ export default class PlanItineraryPage extends Component {
 
     render() {
         return(
-            <main className='itinerary'>
-                <form className="itinerary form" onSubmit={this.handleSubmit}>
+            <main className='page'>
+                <form onSubmit={this.handleSubmit} className="container card card-body col-12 col-md-4 col-lg-4 create-itinerary">
+                   
+                <h4 className="itinerary-title">Create your Itinerary</h4>  
                     <div>
-                        <label htmlFor='name'>Name of your Trip</label>
-                        <input type='text' name='name' value={this.state.newTrip.name} onChange={this.handleChange} />
+                        <label htmlFor='name' className="tripname">Name of your Trip</label>
+                        <input type='text' name='name' value={this.state.newTrip.name} placeholder='Trip name' onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/>
+                    </div>
+                    <div >
+                        <label htmlFor='start' className="from">From</label>
+                        <input type='text' name='start' className="from" placeholder='YYYY-MM-DD' value={this.state.newTrip.start} onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/>
                     </div>
                     <div>
-                        <label htmlFor='start'>From</label>
-                        <input type='text' name='start' placeholder='YYYY-MM-DD' value={this.state.newTrip.start} onChange={this.handleChange} />
+                        <label htmlFor='end' className="to">To</label>
+                        <input type='text' name='end' className="to" placeholder='YYYY-MM-DD' value={this.state.newTrip.end} onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/>
                     </div>
                     <div>
-                        <label htmlFor='end'>To</label>
-                        <input type='text' name='end' placeholder='YYYY-MM-DD' value={this.state.newTrip.end} onChange={this.handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor='name'>Enter places you want to visit: </label>
+                        <label htmlFor='name' className="placename">Enter places you want to visit: </label>
                         {/** <input value={this.state.places} type='text' name='name' onChange={this.handlePlaceChange}/>*/}
                         
                         {
                             this.state.newTrip.places.map((place, index) => {
                                 return(
-                                    <div key={index}>
-                                        <input value={place.name} type='text' name='name' onChange={e => this.handlePlaceChange(e, index)}/>
-                                        <button onClick={e => this.removePlace(e)}>-</button>
+                                    <div key={index} className="delete">
+                                        <input value={place.name} type='text' name='name' onChange={e => this.handlePlaceChange(e, index)} className="col-md-6 mb-4 form-control"/>
+                                        <button onClick={e => this.removePlace(e)} className="btn btn-danger small mb-4">-</button>
                                     </div>
                                 )
                             })
                         }
                     </div>
-                    <button onClick={e => this.addPlace(e)}>+</button>
-                    <input type='submit' value='Create Itinerary' />
+                    <div className="createbtn">
+                    <button onClick={e => this.addPlace(e)} className="btn btn-primary small mb-2">Add</button>
+                    <input type='submit' value='Create Itinerary' className="btn btn-success small"/>
+                    </div>
                 </form>
             </main>
+
         )    
     }
 }

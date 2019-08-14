@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {User} from '../../api'
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import {DateTime} from 'luxon';
 
 export default class MyItineraries extends Component {
     constructor(props) {
@@ -11,10 +12,7 @@ export default class MyItineraries extends Component {
     }
 
     componentDidMount() {
-        // const {startLoading, stopLoading } = this.props;
-        // startLoading()
         User.show(this.props.match.params.id).then(list => {
-            // stopLoading();
             this.setState({trips: list})
         })
     }
@@ -28,8 +26,9 @@ export default class MyItineraries extends Component {
                 {this.state.trips.map(trip => {
                     return(
                         <div className="itinerary-card">
-                            <h1><Link to={`/itineraries/${trip.id}`}>{trip.name}</Link></h1>
-                            <p>From {trip.start} To {trip.end}</p>
+
+                            <h3 class="id">ID {trip.id} <Link to={`/itineraries/${trip.id}`}>{trip.name}</Link></h3>
+                            <p>From {DateTime.fromISO(trip.start, {zone: 'utc'}).toFormat('LLL dd yyyy')} To {DateTime.fromISO(trip.end, {zone: 'utc'}).toFormat('LLL dd yyyy')}</p>
                         </div>
                     )
                 })}

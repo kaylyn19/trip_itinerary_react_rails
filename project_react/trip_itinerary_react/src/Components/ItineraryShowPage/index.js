@@ -13,10 +13,7 @@ export default class ItineraryShowPage extends React.Component {
     }
 
     componentDidMount() {
-        // const {startLoading, stopLoading} = this.props;
-        // startLoading();
         Itinerary.show(this.props.match.params.id).then(trip => {
-            // stopLoading();
             this.setState({itineraries: trip})
         })
     }
@@ -32,8 +29,8 @@ export default class ItineraryShowPage extends React.Component {
     render() {
         if (!this.state.itineraries.id) {
             return(
-                <main className="page">
-                    <h1>Itinerary does not exist!</h1>
+                <main className="empty-itinerary">
+                    <h1 className="empty-itinerary">Itinerary does not exist!</h1>
                 </main>
             )
         }

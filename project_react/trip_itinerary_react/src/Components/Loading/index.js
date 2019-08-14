@@ -12,9 +12,9 @@ function Loading(props) {
       <>  
         <Modal show={isLoading}>
           <Modal.Header>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Please wait ... </Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body>We are generating your itinerary</Modal.Body>
         </Modal>
       </>
     );

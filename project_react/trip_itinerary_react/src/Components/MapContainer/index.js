@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Map, InfoWindow, GoogleApiWrapper, Marker} from 'google-maps-react';
+import {Button, ButtonToolbar} from 'react-bootstrap'
 require('dotenv').config()
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
@@ -33,31 +34,33 @@ class MapContainer extends Component {
     }
 
     render() {
-        return( <div>
-            {/*<Map google={this.props.google} zoom={12} style={{width: '800px', position: 'relative', height: '500px'}} initialCenter={{lat: this.state.coordinates[0][0], lng: this.state.coordinates[0][1]}}>
-                {
-                    this.state.coordinates.map((coord, index) => {
-                        return(
-                            <Marker onClick={this.onMarkerClick} name={coord[2]} position={{lat: coord[0], lng: coord[1]}}>
-                            </Marker>
-                        )
-                    })
-                }
-                <InfoWindow
-                    marker={this.state.activeMarker}
-                    visible={this.state.showingInfoWindow}>
-                    <div><h3>{this.state.selectedPlace.name}</h3></div> 
-                </InfoWindow>
-
-               <button onClick={this.props.onDeleteClick} >Delete</button>
-            </Map>*/}
+        return( <div style={{position: "relative"}}>
+                <ButtonToolbar>
+                    <Button variant="success" onClick={this.props.onDeleteClick} >Delete</Button>
+                    <Button variant="success">Edit</Button>
+                </ButtonToolbar>
+                <Map className="map" google={this.props.google} zoom={12} style={{width: '800px', position: 'relative', height: '500px'}} initialCenter={{lat: this.state.coordinates[0][0], lng: this.state.coordinates[0][1]}}>
+                    {
+                        this.state.coordinates.map((coord, index) => {
+                            return(
+                                <Marker onClick={this.onMarkerClick} name={coord[2]} position={{lat: coord[0], lng: coord[1]}}>
+                                </Marker>
+                            )
+                        })
+                    }
+                    <InfoWindow
+                        marker={this.state.activeMarker}
+                        visible={this.state.showingInfoWindow}>
+                        <div><h3>{this.state.selectedPlace.name}</h3></div> 
+                    </InfoWindow>
+                </Map>
             </div>
         )
     }
 }
 
-export default MapContainer
+// export default MapContainer
 
-// export default GoogleApiWrapper({
-//     apiKey: API_KEY
-// })(MapContainer)
+export default GoogleApiWrapper({
+    apiKey: API_KEY
+})(MapContainer)

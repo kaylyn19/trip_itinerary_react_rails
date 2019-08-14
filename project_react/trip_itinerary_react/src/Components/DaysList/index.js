@@ -10,15 +10,15 @@ export default function DaysList(props) {
         return(<div></div>)
     } else {
         return(
-            <main>
+            <main class="table">
                 <table>
                     <thead>
                         <tr>
                             <th>Date</th>
                             <th>Places to Visit</th>
                         </tr>
-                        </thead>
-                        <tbody>
+                    </thead>
+                    <tbody>
                     {days.map(day => {
                         return(
                             <tr key={day.id}>
