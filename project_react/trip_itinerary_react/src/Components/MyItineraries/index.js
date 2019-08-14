@@ -12,7 +12,10 @@ export default class MyItineraries extends Component {
     }
 
     componentDidMount() {
+        const {startLoading, stopLoading} = this.props;
+        startLoading();
         User.show(this.props.match.params.id).then(list => {
+            stopLoading();
             this.setState({trips: list})
         })
     }

@@ -13,7 +13,10 @@ export default class ItineraryShowPage extends React.Component {
     }
 
     componentDidMount() {
+        const {startLoading, stopLoading} = this.props;
+        startLoading();
         Itinerary.show(this.props.match.params.id).then(trip => {
+            stopLoading();
             this.setState({itineraries: trip})
         })
     }
