@@ -56,17 +56,27 @@ export default class PlanItineraryPage extends Component {
         })
     }
 
-    handleChange(event) {
-        event.preventDefault()
+    handleChange = (event) => e => {
+        // event.preventDefault()    
+        // const newData = {[event.target.name]: event.target.value}
+        // this.setState({
+        //     newTrip: {
+        //         ...this.state.newTrip,
+        //         ...newData
+        //     }
+        // })
+        // event.preventDefault();
+        console.log(event)
+        console.log(e)
+
         const newData = {[event.target.name]: event.target.value}
-        console.log(newData)
         this.setState({
             newTrip: {
                 ...this.state.newTrip,
                 ...newData
-
             }
         })
+
     }
 
     handlePlaceChange(event, index) {
@@ -89,13 +99,13 @@ export default class PlanItineraryPage extends Component {
                    
                 <h4 className="itinerary-title">Create your Itinerary</h4>  
                     <div>
-                        <label htmlFor='name' className="tripname">Name of your Trip</label>
-                        <input type='text' name='name' value={this.state.newTrip.name} placeholder='Trip name' onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/>
+                        <label htmlFor='name' className="tripname">Your Destination</label>
+                        <input type='text' name='name' value={this.state.newTrip.name} placeholder='Destination' onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/>
                     </div>
                     <div >
                         <label htmlFor='start' className="from">From</label>
-                        {/* <DatePicker name='start' className='from' value={this.state.newTrip.start} onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/> */}
-                        <input type='text' name='start' className="from" placeholder='YYYY-MM-DD' value={this.state.newTrip.start} onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/>
+                        <DatePicker name='start' className='from' value={this.state.newTrip.start} onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/>
+                        {/* <input type='text' name='start' className="from" placeholder='YYYY-MM-DD' value={this.state.newTrip.start} onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/> */}
                     </div>
                     <div>
                         <label htmlFor='end' className="to">To</label>

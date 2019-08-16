@@ -65,7 +65,7 @@ export default class App extends Component{
                         <Switch>
                             <Route exact path='/sign_up' render={(routeProps) => <SignUpPage onSignUp={this.getCurrentUser} {...routeProps}/>} />
                             <Route  path='/sign_in' render={(routeProps) => (<SignInPage {...routeProps} onSignIn={this.getCurrentUser}/>)} />
-                            <AuthRoute exact path='/itineraries/new' isAuthenticated={this.state.currentUser} component={PlanItineraryPage} startLoading={this.startLoading} stopLoading={this.stopLoading} />
+                            <AuthRoute exact path='/itineraries/new' isAuthenticated={true} component={PlanItineraryPage} startLoading={this.startLoading} stopLoading={this.stopLoading} />
                             <Route exact path='/itineraries/:id' render={(routeProps) => <ItineraryShowPage {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>} />
                             <Route expact path='/itineraries/:id/edit' component={ItineraryEditPage}/>
                             <Route path='/my_itineraries' render={(routeProps) => <MyItineraries {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>
