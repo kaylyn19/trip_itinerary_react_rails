@@ -83,6 +83,14 @@ class Api::V1::ItinerariesController < Api::ApplicationController
         render json: {status: 200}, status: 200
     end
 
+    def update
+        if @itinerary.update itinerary_params
+            render json: {id: @itinerary.id, status: 200}, status: 200
+        else
+            render json: {error: @itinerary.errors.full_messages.join(', ')}, status: 400
+        end
+    end
+
     private
 
     def itinerary_params

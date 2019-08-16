@@ -29,6 +29,12 @@ export default class ItineraryShowPage extends React.Component {
         }
     }
 
+    handleEdit(id, params) {
+        // Itinerary.edit(this.state.itineraries.id, ).then((res) => {
+
+        // })
+    }
+
     render() {
         if (!this.state.itineraries.id) {
             return(
@@ -45,7 +51,7 @@ export default class ItineraryShowPage extends React.Component {
                     start={this.state.itineraries.start}
                     end={this.state.itineraries.end}
                 />
-                <DaysList days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)}/>
+                <DaysList days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)} onEdit={this.handleEdit.bind(this)}/>
             </main>
         )
     }

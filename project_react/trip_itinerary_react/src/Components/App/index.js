@@ -9,9 +9,10 @@ import PlanItineraryPage from '../PlanItineraryPage';
 import NavBar from '../NavBar'
 import ItineraryShowPage from '../ItineraryShowPage';
 import MyItineraries from '../MyItineraries';
+import ItineraryEditPage from '../ItineraryEditPage'
 import Loading from '../Loading'
 
-import {Proider} from 'react-redux';
+import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import rootReducer from '../../store/reducers';
@@ -66,6 +67,7 @@ export default class App extends Component{
                             <Route  path='/sign_in' render={(routeProps) => (<SignInPage {...routeProps} onSignIn={this.getCurrentUser}/>)} />
                             <AuthRoute exact path='/itineraries/new' isAuthenticated={this.state.currentUser} component={PlanItineraryPage} startLoading={this.startLoading} stopLoading={this.stopLoading} />
                             <Route exact path='/itineraries/:id' render={(routeProps) => <ItineraryShowPage {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>} />
+                            <Route expact path='/itineraries/:id/edit' component={ItineraryEditPage}/>
                             <Route path='/my_itineraries' render={(routeProps) => <MyItineraries {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>
                             <Route exact path='/' component={WelcomePage}/>
                         </Switch>

@@ -35,6 +35,7 @@ export default function SignInPage(props) {
                     <a href="#" class="forgot-link">Forgot Password?</a>
                 </div>
                 <button type="submit" value="Sign In" className="btn btn-success col-8 col-md-3 mt-3 offset-4"> Sign in</button>
+                <div class="text-center already">Don't have an account? <a href="#">Sign up here</a></div>
             </form>
         </main>
     )
