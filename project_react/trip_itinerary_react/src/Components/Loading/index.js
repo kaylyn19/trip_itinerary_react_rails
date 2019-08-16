@@ -9,14 +9,14 @@ function Loading(props) {
   
     const {isLoading} = props;
     return (
-      <>  
+      <div className="loading-container">  
         <Modal show={isLoading} className="loading" >
           <Modal.Header >
             <Modal.Title>Please wait ... </Modal.Title>
           </Modal.Header>
           <Modal.Body>We are generating your itinerary</Modal.Body>
         </Modal>
-      </>
+      </div>
  
       );
   }
