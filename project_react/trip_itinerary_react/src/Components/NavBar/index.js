@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { Session } from '../../api';
-import {Navbar, Nav, NavbarCollapse, NavLink, NavDropdown, Form, FormControl, Button} from 'react-bootstrap';
+import {Navbar, Nav, Form} from 'react-bootstrap';
 // import {Button, Nav, etc} from 'react-bootstrap'
 
 

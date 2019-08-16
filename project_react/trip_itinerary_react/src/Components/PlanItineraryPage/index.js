@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Itinerary} from '../../api'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class PlanItineraryPage extends Component {
     constructor(props) {
@@ -57,10 +59,12 @@ export default class PlanItineraryPage extends Component {
     handleChange(event) {
         event.preventDefault()
         const newData = {[event.target.name]: event.target.value}
+        console.log(newData)
         this.setState({
             newTrip: {
                 ...this.state.newTrip,
                 ...newData
+
             }
         })
     }
@@ -90,6 +94,7 @@ export default class PlanItineraryPage extends Component {
                     </div>
                     <div >
                         <label htmlFor='start' className="from">From</label>
+                        {/* <DatePicker name='start' className='from' value={this.state.newTrip.start} onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/> */}
                         <input type='text' name='start' className="from" placeholder='YYYY-MM-DD' value={this.state.newTrip.start} onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/>
                     </div>
                     <div>

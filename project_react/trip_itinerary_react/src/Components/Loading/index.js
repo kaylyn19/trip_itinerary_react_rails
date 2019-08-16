@@ -10,14 +10,15 @@ function Loading(props) {
     const {isLoading} = props;
     return (
       <>  
-        <Modal show={isLoading}>
-          <Modal.Header>
+        <Modal show={isLoading} className="loading" >
+          <Modal.Header >
             <Modal.Title>Please wait ... </Modal.Title>
           </Modal.Header>
           <Modal.Body>We are generating your itinerary</Modal.Body>
         </Modal>
       </>
-    );
+ 
+      );
   }
   
   export default Loading

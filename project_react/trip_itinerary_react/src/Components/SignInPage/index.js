@@ -22,7 +22,7 @@ export default function SignInPage(props) {
     return(
         <main className="page signin-page">   
             <form onSubmit={handlerSubmit} className="container card card-body col-8 col-md-4 col-lg-4 signin-form">
-                <i class="fa fa-user avatar"></i>
+                <i className="fa fa-user avatar"></i>
                 <h4 className="login-title">Login to Your Account</h4>        
                 <div>
                 {/* <label htmlFor="password">Email</label> */}
@@ -31,11 +31,11 @@ export default function SignInPage(props) {
                 <div>
                     {/* <label htmlFor="password">Password</label> */}
                     <input name="password" type="password"  placeholder="Password" className="col-md-10 offset-1 mb-3 form-control"/>
-                    <label class="checkbox-inline"><input type="checkbox"/> Remember me</label>
-                    <a href="#" class="forgot-link">Forgot Password?</a>
+                    <label className="checkbox-inline"><input type="checkbox"/> Remember me</label>
+                    <a href="#" className="forgot-link">Forgot Password?</a>
                 </div>
                 <button type="submit" value="Sign In" className="btn btn-success col-8 col-md-3 mt-3 offset-4"> Sign in</button>
-                <div class="text-center already">Don't have an account? <a href="#">Sign up here</a></div>
+                <div className="text-center already">Don't have an account? <a href="#">Sign up here</a></div>
             </form>
         </main>
     )
