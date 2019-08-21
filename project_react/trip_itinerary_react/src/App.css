@@ -1,3 +1,27 @@
+@import url(./assets/reset.css);
+
+@import url('https://fonts.googleapis.com/css?family=Lexend+Deca|Lexend+Tera&display=swap');
+
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+body {font-family: 'Lexend Deca', sans-serif;
+}
+
+h1, h2, h3 {  font-family: 'Lexend Tera', sans-serif;}
+
+h1 { font-size: 4em;}
+h2 {}
+h3 {font-size: 3.75em; text-transform: capitalize;}
+/* p {background: lightblue;} */
+
+
 .App {
   text-align: center;
 }
@@ -130,10 +154,11 @@ span {
 /* --------- SIGN IN FORM ----------------- */
 /* TRouBL */
 .signin-page {
-  background: url('https://i.imgur.com/8QbGjDv.jpg');
+  background: url('./assets/background.jpg');
   content: '';
   width: 100%;
-  height: 100%;
+  height:
+   100%;
   position: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -182,7 +207,7 @@ span {
   margin-right: 1.5em;
 }
 .signup-page {
-  background: url('https://i.imgur.com/YdxBOBO.jpg');
+  background: url('./assets/background.jpg');
   content: '';
   width: 100%;
   height: 100%;
@@ -226,15 +251,27 @@ span {
 /* my_itineraries */
 .itinerary-card {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   /* text-align: center; */
-  margin: 2em 40em;
-  border: 0.1em solid #AED6D1;
-  padding: 1.5em;
+  /* margin: 2em 40em; */
+  border: 3px solid #AED6D1;
+  padding: 1.5em 3em;
   border-radius: 20px;
+  margin: 1%;
+  width: 31.333%;
+  flex-direction: column;
+}
+.itinerary-card:hover {background: lightblue;}
+
+.itinerary-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.id {padding-bottom: 1em}
+
+
+.id {padding-bottom: .125em}
 
 th {width: 25em}
 table, .empty-itinerary {text-align: center; margin-top: 4em}
@@ -248,8 +285,44 @@ table, .empty-itinerary {text-align: center; margin-top: 4em}
 .map {margin: 3em 3em}
 .date {display: flex;} 
 .from-date {margin-left: 6em}
-.show-container{margin-top: 2em}
+.show-container{margin-top: 2em;
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-content: center;
+align-items: center;
+}
 /* .show {margin-left: 30%; margin-top: 2em;} */
 .btn-toolbar{width:10em; display: flex; justify-content: space-between; margin-top: 5em; margin-left: 3em}
 /* .modal-content{display:flex; justify-content: center; align-items: center} */
 /* .modal-content{text-align: center} */
+
+/* .loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: pink;
+  padding: 2em;
+} */
+.loading {
+  background: white;
+  padding: 2em;display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.show-title {
+font-size: 6em;
+padding-bottom: 30px;
+}
+.show-subtitle {
+  font-size: 2em;
+  padding-bottom: 30px;
+
+}
+
+.modal-title {margin: auto;}
+/* .modal-dialog {padding: 1em; background: lightblue;  display: flex;
+  justify-content: center;
+  align-items: center;}
+.modal-content{ padding: 1em; background: blue;} */

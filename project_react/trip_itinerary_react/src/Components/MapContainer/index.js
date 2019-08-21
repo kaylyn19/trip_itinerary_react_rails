@@ -35,7 +35,7 @@ class MapContainer extends Component {
 
     render() {
         return( <div style={{position: "relative"}}>
-                {/* <ButtonToolbar>
+                <ButtonToolbar>
                     <Button href={`/itineraries/${this.props.days[0].itinerary_id}/edit`}variant="success" onClick={this.props.onEditClick}>Edit</Button>
                     <Button variant="success" onClick={this.props.onDeleteClick} >Delete</Button>
                 </ButtonToolbar>
@@ -53,14 +53,14 @@ class MapContainer extends Component {
                         visible={this.state.showingInfoWindow}>
                         <div><h3>{this.state.selectedPlace.name}</h3></div> 
                     </InfoWindow>
-                </Map> */}
+                </Map>
             </div>
         )
     }
 }
 
-export default MapContainer
+// export default MapContainer
 
-// export default GoogleApiWrapper({
-//     apiKey: API_KEY
-// })(MapContainer)
+export default GoogleApiWrapper({
+    apiKey: API_KEY
+})(MapContainer)

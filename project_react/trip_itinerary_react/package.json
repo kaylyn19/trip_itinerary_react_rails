@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@types/react-router-dom": "^4.3.4",
-    "bootstrap": "^4.3.1",
     "dotenv": "^8.0.0",
     "google-maps-react": "^2.0.2",
     "luxon": "^1.17.2",

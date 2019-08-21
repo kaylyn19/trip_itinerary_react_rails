@@ -30,7 +30,7 @@ export default class MyItineraries extends Component {
                     return(
                         <div className="itinerary-card">
 
-                            <h3 class="id">ID {trip.id} <Link to={`/itineraries/${trip.id}`}>{trip.name}</Link></h3>
+                            <h3 class="id"><Link to={`/itineraries/${trip.id}`}>{trip.name}</Link></h3>
                             <p>From {DateTime.fromISO(trip.start, {zone: 'utc'}).toFormat('LLL dd yyyy')} To {DateTime.fromISO(trip.end, {zone: 'utc'}).toFormat('LLL dd yyyy')}</p>
                         </div>
                     )
