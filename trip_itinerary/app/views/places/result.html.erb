@@ -1,0 +1,64 @@
+<h1>Result of Your <%= @trip_name.titleize%> Trip</h1>
+
+<p>Yout trip is from <%= @from%> to <%= @to%> for <%= @duration%> days</p>
+<p>Your choice of attraction sites are:</p>
+<ul>
+  <% @trip_info.keys.map do |place|%>
+    <li><%= place.titleize%></li>
+  <% end %>
+</ul>
+
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 500px;'></div>
+</div>
+
+<script>
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+
+
+    <% @trip_info.each do |place, value| %>
+      lastMarker = handler.addMarkers([
+        { 
+          "lat": <%= value[:coordinates][0] %>,
+          "lng": <%= value[:coordinates][1] %>,
+          "infowindow": "<%= place %>"
+         }
+    ]);
+
+    <% end %>
+
+    handler.bounds.extendWith(lastMarker);
+    handler.fitMapToBounds();
+
+    handler.getMap().setZoom(12)
+    });
+</script>
+
+<h1>Your Itinerary</h1>
+<table>
+  <tr>
+    <th>Day(s)<th>
+    <th>Attractions<th>
+    <th>Address<th>
+  </tr>
+  <% for index in 0...@duration %>
+    <tr>
+      <td><%= index + 1%><td>
+      <td>
+         <ul>
+          <% @each_day[index].split(', ').each do |place|%>
+            <li><%= place.titleize%></li>
+          <% end %>
+         </ul>
+      <td>
+      <td>
+        <ul>
+          <% @each_day[index].split(', ').each do |place|%>
+            <li><%= Place.find_by(name: place.titleize).address%></li>
+          <% end %>
+        </ul>
+      <td>
+    </tr>
+  <% end %>
+</table>

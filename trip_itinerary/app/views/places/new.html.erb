@@ -1,0 +1,20 @@
+<h1>Add Attraction Sites</h1>
+
+<%= form_with url: '/places/generate', local: true do |form| %>
+    <div>
+        <%= form.label :name_of_trip%>
+        <%= form.text_field :name_of_trip%>
+    </div>
+    <div>
+        <%= form.label :duration_of_trip %>
+        <%= form.text_field :from_date, placeholder: "2019-07-12"%> ~ 
+        <%= form.text_field :to_date, placeholder: "2019-07-20"%>
+    </div>
+
+    <div class="attraction site">
+        <%= form.label :attraction_site %>
+        <%= form.text_field :name, class:"places"%>
+    </div>
+    <input type="submit" id="add" value="Add">
+    <%= form.submit "Create Itinerary"%>
+<% end %>
