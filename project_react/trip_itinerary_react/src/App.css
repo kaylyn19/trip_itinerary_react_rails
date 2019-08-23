@@ -1,0 +1,253 @@
+.App {
+  text-align: center;
+}
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-link {
+  color: #61dafb;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* -----LANDING PAGE -------- */
+.landing-page {
+  background: url('./assets/home_2.jpg');
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+}
+#test p {
+  margin-top: 25px;
+  font-size: 50px;
+  text-align: center;
+  -webkit-animation: fadein 3s;
+  /* Safari, Chrome and Opera > 12.1 */
+  animation: fadein 3s;
+  
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.welcome-text {
+  text-align: start;
+  text-shadow: -1px 0 black, 0 -1px black, -1px 0 black, 0 1px black;
+  /* position: absolute;
+  padding-left: 5em;
+  top: 40%;
+  left: 8%; */
+  position: absolute;
+  width: 100%;
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  
+}
+#welcome-button {
+  margin-top: 2em;
+  position: absolute;
+  top: 55%;
+  left: 42%;
+  /* position: absolute;
+  width: 100%;
+  height:100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; */
+}
+#welcome-button {
+  /* border: 5px solid transparent; */
+  background: #AED6D1;
+  color: #55706D;
+  border-radius: 40px;
+  padding: 15px 22px;
+  /* overflow: hidden; */
+  width: 200px;
+  transition: 
+    all        1.2s,
+    border     0.5s 1.2s,
+    box-shadow 0.3s 1.5s;
+  white-space: nowrap;
+  text-indent: 23px;
+  font-weight: bold;
+}
+span {
+  display: inline-block;
+  transform: translateX(300px);
+  font-weight: normal;
+  opacity: 0;
+  transition: 
+    opacity 0.1s 0.5s,
+    transform 0.4s 0.5s;
+}
+#welcome-button:hover {
+  text-indent: 0;
+  background: #55706D;
+  color: #FFE8A3;
+  width: 250px;
+  /* border: 10px solid #8DCCC4;
+  box-shadow: 3px 3px 2px rgba(black, 0.15); */
+}
+#welcome-button:hover span {
+  transform: translateX(0);
+  opacity: 1;
+}
+/* ------------------------- */
+/* --------- SIGN IN FORM ----------------- */
+/* TRouBL */
+.signin-page {
+  background: url('https://i.imgur.com/8QbGjDv.jpg');
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  left: 0px;
+  top: 0px;
+  z-index: -100;
+}
+.avatar {
+  color: #fff;
+  margin: 0 auto 15px 4em;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  z-index: 9;
+  background: #4aba70;
+  padding: 15px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  font-size: 62px;
+}
+.login-title,
+.signup-title,
+.itinerary-title {
+  text-align: center;
+  margin: 10px auto 35px auto;
+}
+.signin-form {
+  margin-top: 9.5em;
+}
+.forgot-link {
+  float: right;
+  margin-right: 2.5em;
+}
+.checkbox-inline {
+  float: left;
+  margin-left: 2.2em;
+}
+/* ----------------------------------------- */
+/* --------------- SIGN UP FORM ------------------ */
+.signup-form {
+  margin-top: 7em;
+  margin-bottom: 2em;
+}
+.already {
+  margin-top: 2em;
+  margin-right: 1.5em;
+}
+.signup-page {
+  background: url('https://i.imgur.com/YdxBOBO.jpg');
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  left: 0px;
+  top: 0px;
+  z-index: -100;
+}
+
+
+/* ------- CREATE ITINERARY -------------- */
+.create-itinerary {
+  margin-top: 7em;
+}
+.itinerary-title {
+  text-align:center;
+}
+.tripname,
+.from,
+.to,
+.placename {
+  display:flex;
+  justify-content:center;
+}
+.delete {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content: center;
+}
+.createbtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+/* ------------------------- */
+
+/* my_itineraries */
+.itinerary-card {
+  display: flex;
+  flex-direction: column;
+  /* text-align: center; */
+  margin: 2em 40em;
+  border: 0.1em solid #AED6D1;
+  padding: 1.5em;
+  border-radius: 20px;
+}
+
+.id {padding-bottom: 1em}
+
+th {width: 25em}
+table, .empty-itinerary {text-align: center; margin-top: 4em}
+.table {
+  display: flex; 
+  /* justify-content: center */
+  /* margin: 0em 4em; */
+  margin-left: 5em;
+  /* margin-right: 3em; */
+}
+.map {margin: 3em 3em}
+.date {display: flex;} 
+.from-date {margin-left: 6em}
+.show-container{margin-top: 2em}
+.show {margin-left: 30%; margin-top: 2em;}
+.btn-toolbar{width:10em; display: flex; justify-content: space-between; margin-top: 5em; margin-left: 3em}
+/* .modal-content{display:flex; justify-content: center; align-items: center} */
+/* .modal-content{text-align: center} */
