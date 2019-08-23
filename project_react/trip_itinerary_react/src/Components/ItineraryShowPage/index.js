@@ -2,6 +2,7 @@ import React from 'react';
 import ItineraryDetails from '../ItineraryDetails'
 import { Itinerary } from '../../api';
 import DaysList from '../DaysList';
+import EventsList from '../EventsList'
 import ReactWeather from 'react-open-weather';
 import 'react-open-weather/lib/css/ReactWeather.css';
 require('dotenv').config()
@@ -59,6 +60,7 @@ export default class ItineraryShowPage extends React.Component {
                     <ReactWeather forecast="5days" apikey={WEATHER_API_KEY} type="city" city={this.state.itineraries.name}/>
                 </div>
                 <DaysList days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)} onEdit={this.handleEdit.bind(this)}/>
+                <EventsList city={this.state.itineraries.name} start={this.state.itineraries.start} end={this.state.itineraries.end}/>
             </main>
         )
     }

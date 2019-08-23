@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import {Itinerary} from '../../api'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { isThisSecond } from 'date-fns';
-import {DateTime} from 'luxon';
-
 
 export default class PlanItineraryPage extends Component {
     constructor(props) {

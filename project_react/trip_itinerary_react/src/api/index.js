@@ -1,4 +1,6 @@
-const BASE_URL = 'http://localhost:3000/api/v1'
+const BASE_URL = 'http://localhost:3000/api/v1';
+require('dotenv').config();
+const API_KEY = process.env.REACT_APP_PREDICT_HQ_ACCESS_TOKEN;
 
 export const User = {
     current() {
@@ -74,6 +76,18 @@ export const Itinerary = {
                 "Content-Type": 'application/json'
             },
             body: JSON.stringify({itinerary: params})
+        }).then(res => res.json())
+    }
+}
+
+export const Event = {
+    all(city, start_date, end_date) {
+        return fetch (`https://api.predicthq.com/v1/events/?q=country=US`, {
+            method: "GET",
+            credentials: 'include',
+            headers: {
+                // 'Authorization': Bearer $API_KEY
+            }
         }).then(res => res.json())
     }
 }
