@@ -81,10 +81,13 @@ export const Itinerary = {
 }
 
 export const Event = {
-    all(start_date, end_date) {
-        return fetch (`https://api.predicthq.com/v1/events/?q=country=US HTTP/1.1`, {
+    // all(start_date, end_date) {
+    all() {
+        return fetch (`https://api.predicthq.com/v1/events/?q=country=US`, {
             method: "GET",
-            Authorization: `Bearer ${API_KEY}`,
+            headers: {
+                Authorization: `Bearer ${API_KEY}`,
+            }
         }).then(res => res.json())
     }
 }

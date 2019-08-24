@@ -60,7 +60,7 @@ export default class ItineraryShowPage extends React.Component {
                     <ReactWeather forecast="5days" apikey={WEATHER_API_KEY} type="city" city={this.state.itineraries.name}/>
                 </div>
                 <DaysList days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)} onEdit={this.handleEdit.bind(this)}/>
-                <EventsList city={this.state.itineraries.name} start={this.state.itineraries.start} end={this.state.itineraries.end}/>
+                {/* <EventsList/> */}
             </main>
         )
     }

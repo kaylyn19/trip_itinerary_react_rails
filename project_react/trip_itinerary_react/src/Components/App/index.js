@@ -70,7 +70,7 @@ export default class App extends Component{
                             <Route exact path='/itineraries/:id' render={(routeProps) => <ItineraryShowPage {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>} />
                             <Route expact path='/itineraries/:id/edit' component={ItineraryEditPage}/>
                             <Route path='/my_itineraries' render={(routeProps) => <MyItineraries {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>
-                            <Route exact path='/itineraries/:id/events' component={EventsList}/>
+                            <Route exact path='/itineraries/:id/events' render={(routeProps) => <EventsList {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>
                             <Route exact path='/' component={WelcomePage}/>
                         </Switch>
                     </div>
