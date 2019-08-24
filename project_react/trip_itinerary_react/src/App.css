@@ -350,6 +350,27 @@ align-items: center;
   align-items: center;
 }
 
+/* ------- CREATE ITINERARY -------------- */
+.create-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+.input-create {
+  margin-left: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  width: 90%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+/* TO CENTRE THE TEXT BOX */
+
+
 .show-title {
 font-size: 6em;
 padding-bottom: 30px;

@@ -5,13 +5,15 @@ export default class EventsList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            events: []
+            events: {
+                results: []
+            }
         }
     }
 
     componentDidMount() {
-        const {city, start, end} = this.props
-        Event.all(city, start, end).then(list => {
+        const {city, start, end} = this.props;
+        Event.all(start, end).then(list => {
             this.setState({
                 events: list
             })
@@ -20,7 +22,12 @@ export default class EventsList extends Component {
 
     render() {
         return <main>
-
+            <h1>Select Your Events</h1>
+            {
+                // this.state.events.results.map(event => {
+                //     <div>{event.title}</div>
+                // })
+            }
         </main>
     }
 }
