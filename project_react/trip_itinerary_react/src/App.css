@@ -67,86 +67,53 @@ h3 {font-size: 3.75em; text-transform: capitalize;}
 } */
 
 .slider {
-  /* display: block; */
-  width: 100%;
-  height: 400px;
   background: url('../src/assets/home_3.jpg');
-  margin: 100px auto;
   animation: slide 20s infinite;
-  /* animation-duration: 4s; */
-  /* overflow: hidden;
-  position: absolute; */
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 @keyframes slide {
-  25% { background: url('../src/assets/home_3.jpg')}
-  50% {background: url('../src/assets/home_4.jpg')}
-  75% {background: url('../src/assets/home_5.jpg')}
-  100% {background: url('../src/assets/home_6.jpg')}
+  25% {
+    background: url('../src/assets/home_3.jpg');
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  50% {
+    background: url('../src/assets/home_4.jpg');
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  75% {
+    background: url('../src/assets/home_5.jpg');
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  100% {
+    background: url('../src/assets/home_6.jpg');
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }
-
-
-/* sider > * {
-  position:absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: #1f1f1f;
-  animation: slide 12s infinite;
-  overflow: hidden;
-}
-
-slide:nth-child(1) {
-  left: 0%;
-  animation-delay: -1s;
-  background-image: url(../src/assets/home_3.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-slide:nth-child(2) {
-  left: 0%;
-  animation-delay: 2s;
-  background-image: url(../src/assets/home_4.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-slide:nth-child(3) {
-  left: 0%;
-  animation-delay: 5s;
-  background-image: url(../src/assets/home_5.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-slide:nth-child(4) {
-  left: 0%;
-  animation-delay: 8s;
-  background-image: url(../src/assets/home_6.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-slide p {
-  font-family: Comfortaa;
-  font-size: 70px;
-  text-align: center;
-  display: inline-block;
-  width: 100%;
-  margin-top: 340px;
-  color: #fff;
-} */
-
-/* @keyframes slide {
-  0% { left: 100%; width: 100%}
-  5% {left: 0%}
-  25% {left: 0%}
-  30% {left: -100%; width: 100%}
-  30.0001% {left: -100%; width: 0%}
-  100% {left: 100%; width: 0%}
-} */
-
 
 #test p {
   margin-top: 25px;
@@ -167,35 +134,25 @@ slide p {
 }
 
 .welcome-text {
+  font-size: 40px;
   text-align: start;
   text-shadow: -1px 0 black, 0 -1px black, -1px 0 black, 0 1px black;
-  /* position: absolute;
-  padding-left: 5em;
-  top: 40%;
-  left: 8%; */
-  position: absolute;
-  width: 100%;
-  height:100%;
+  margin-bottom: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
-  
 }
-#welcome-button {
-  margin-top: 2em;
-  position: absolute;
-  top: 55%;
-  left: 42%;
-  /* position: absolute;
-  width: 100%;
-  height:100%;
+.welcome-button {
+  margin-top: 3em;
+  height: 700px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: center; */
+  justify-content: center;
 }
+/*adjust the height if it's not centered*/
 #welcome-button {
   /* border: 5px solid transparent; */
   background: #AED6D1;
@@ -204,9 +161,9 @@ slide p {
   padding: 15px 22px;
   /* overflow: hidden; */
   width: 200px;
-  transition: 
-    all        1.2s,
-    border     0.5s 1.2s,
+  transition:
+    all 1.2s,
+    border 0.5s 1.2s,
     box-shadow 0.3s 1.5s;
   white-space: nowrap;
   text-indent: 23px;
@@ -251,7 +208,7 @@ span {
 }
 .avatar {
   color: #fff;
-  margin: 0 auto 15px 4em;
+  margin: 0 auto;
   text-align: center;
   width: 100px;
   height: 100px;
@@ -259,7 +216,6 @@ span {
   z-index: 9;
   background: #4aba70;
   padding: 15px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
   font-size: 62px;
 }
 .login-title,
