@@ -5,6 +5,8 @@ class Place < ApplicationRecord
     validates :latitude, :longitude, :latitude, presence: true
     geocoded_by :name
     after_validation :geocode
+    reverse_geocoded_by :latitude, :longitude
+    after_validation :reverse_geocode
 
     before_validation :titleize
     private

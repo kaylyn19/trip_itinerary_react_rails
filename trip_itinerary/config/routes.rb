@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       end      
       resource :session, only: [:create, :destroy]
       resources :itineraries, only: [:create, :show, :destroy, :update]
+      resources :places, only: [:create]
     end
   end
 end

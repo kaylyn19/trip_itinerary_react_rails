@@ -80,6 +80,18 @@ export const Itinerary = {
     }
 }
 
+export const Place = {
+    create(params) {
+        return fetch(`${BASE_URL}/api/v1/places`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(params)
+        }).then(res => res.json())
+    }
+}
+
 export const Event = {
     // all(start_date, end_date) {
     all() {
