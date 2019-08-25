@@ -19,17 +19,17 @@ export default class EventShowPage extends Component {
         })
     }
 
-    handleClick(event, eventID) {
+    handleClick(event, eventParams, festival) {
         event.preventDefault();
-        // AttendingEvent.create(
-        //     event_id: eventID,
-        //     day_id:
-        // )
-        // day_id: Day.where(start: this.state.events.start)
+        AttendingEvent.create({
+            event_id: eventParams.event_id,
+            day_id: [festival.start, eventParams.id]
+        }).then(res => {
+            this.props.history.push(`/itineraries/${this.props.match.params.id}`)
+        })
     }
 
     render() {
-        console.log(DateTime.fromISO(this.state.events.start, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm"))
         if (this.state.events) {
             return <main>
                 <h1>{this.state.events.name}</h1>
@@ -38,7 +38,7 @@ export default class EventShowPage extends Component {
                 <p>Starts: {DateTime.fromISO(this.state.events.start, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
                 <p>Ends: {DateTime.fromISO(this.state.events.end, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
                 <p>{this.state.events.labels}</p>
-                <Button onClick={(e, id) => this.handleClick(e, this.props.match.params.id)}>Add</Button>
+                <Button onClick={(e, id, festival) => this.handleClick(e, this.props.match.params, this.state.events)}>Add</Button>
             </main>
         } else {
             return <main></main>

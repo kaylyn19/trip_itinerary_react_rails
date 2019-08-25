@@ -110,7 +110,7 @@ export const Festival = {
 
 export const AttendingEvent = {
     create(params, event_id) {
-        return fetch(`${BASE_URL}//api/v1/events/${event_id}/attending_events`, {
+        return fetch(`${BASE_URL}/events/${event_id}/attending_events`, {
             method: 'POST',
             credentials: 'include',
             headers: {
