@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
-    has_many :destinations, dependent: :destroy
-    has_many :days, through: :destinations
+    has_many :attending_events, dependent: :destroy
+    has_many :days, through: :attending_events
+    
     validates :name, presence: true, uniqueness: {case_sensitive: false}
 
     geocoded_by :name

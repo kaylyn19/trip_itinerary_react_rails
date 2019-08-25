@@ -3,6 +3,7 @@ class Api::V1::EventsController < Api::ApplicationController
         results = Geocoder.search([params[:event][:latitude], params[:event][:longitude]])
         event = Event.find_or_create_by(
             name: params[:event][:name],
+            description: params[:event][:description],
             longitude: params[:event][:longitude],
             latitude: params[:event][:latitude],
             address: results.first.address,

@@ -4,10 +4,10 @@ import {DateTime} from 'luxon';
 import {Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import {Event} from '../../api'
+import EventShowPage from '../EventShowPage';
 
 export default class EventsList extends Component {
     constructor(props) {
-        console.log(props)
         super(props)
         this.state = {
             events: {}
@@ -16,17 +16,11 @@ export default class EventsList extends Component {
     }
 
     componentDidMount() {
-        // const {city, start, end} = this.props;
         const {startLoading, stopLoading} = this.props;
-        // startLoading();
-        // Festival.all().then(list => {
-        //     stopLoading();
-        //     this.setState({
-        //         events: list
-        //     })
-        // })
+        startLoading();
         Itinerary.show(this.props.match.params.id).then(res => {
             Festival.all(res.start, res.end).then(event => {
+                stopLoading();
                 this.setState({
                     events: event
                 })
@@ -40,6 +34,7 @@ export default class EventsList extends Component {
         startLoading();
         Event.create({
             name: festival.title,
+            description: festival.description,
             latitude: festival.location[1],
             longitude: festival.location[0],
             labels: festival.labels.join(' '),

@@ -20,6 +20,7 @@ export default function DaysList(props) {
                     </thead>
                     <tbody>
                     {days.map(day => {
+                        console.log(day.places)
                         return(
                             <tr key={day.id}>
                                 <td><DaysDetails from_date={day.from_date} to_date={day.to_date}/></td>

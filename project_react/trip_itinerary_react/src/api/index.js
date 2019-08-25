@@ -107,3 +107,16 @@ export const Festival = {
         }).then(res => res.json())
     }
 }
+
+export const AttendingEvent = {
+    create(params, event_id) {
+        return fetch(`${BASE_URL}//api/v1/events/${event_id}/attending_events`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({attending_event: params})
+        }).then(res => res.json())
+    }
+}

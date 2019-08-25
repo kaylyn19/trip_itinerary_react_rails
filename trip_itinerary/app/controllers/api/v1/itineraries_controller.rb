@@ -26,6 +26,7 @@ class Api::V1::ItinerariesController < Api::ApplicationController
         end
         # from = DateTime.strptime(params[:itinerary][:start], '%a %b %d %Y')
         # to = DateTime.strptime(params[:itinerary][:end], '%a %b %d %Y')
+        byebug
         from = params[:itinerary][:start].to_datetime
         to = params[:itinerary][:end].to_datetime
 
@@ -83,14 +84,6 @@ class Api::V1::ItinerariesController < Api::ApplicationController
     def destroy
         @itinerary.destroy
         render json: {status: 200}, status: 200
-    end
-
-    def update
-        if @itinerary.update itinerary_params
-            render json: {id: @itinerary.id, status: 200}, status: 200
-        else
-            render json: {error: @itinerary.errors.full_messages.join(', ')}, status: 400
-        end
     end
 
     private
