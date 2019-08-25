@@ -4,7 +4,7 @@ import PlaceList from '../PlaceList';
 import MapContainer from '../MapContainer';
 
 export default function DaysList(props) {
-    const {days, onDelete, onEdit} = props;
+    const {days, onDelete} = props;
 
     if (!days) {
         return(<div></div>)
@@ -29,7 +29,7 @@ export default function DaysList(props) {
                     })}
                     </tbody>
                 </table>
-                <MapContainer days={days} onDeleteClick={onDelete} onEditClick={onEdit}/>
+                <MapContainer days={days} onDeleteClick={onDelete}/>
             </main>
         )    
     }

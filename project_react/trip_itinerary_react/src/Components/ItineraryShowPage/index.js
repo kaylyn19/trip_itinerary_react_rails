@@ -34,12 +34,6 @@ export default class ItineraryShowPage extends React.Component {
         }
     }
 
-    handleEdit(id, params) {
-        // Itinerary.edit(this.state.itineraries.id, ).then((res) => {
-
-        // })
-    }
-
     render() {
         if (!this.state.itineraries.id) {
             return(
@@ -59,8 +53,7 @@ export default class ItineraryShowPage extends React.Component {
                 <div className="container" width="100" height="100">
                     <ReactWeather forecast="5days" apikey={WEATHER_API_KEY} type="city" city={this.state.itineraries.name}/>
                 </div>
-                <DaysList days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)} onEdit={this.handleEdit.bind(this)}/>
-                {/* <EventsList/> */}
+                <DaysList days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)}/>
             </main>
         )
     }

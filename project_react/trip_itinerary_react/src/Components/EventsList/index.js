@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {Event} from '../../api';
 import {DateTime} from 'luxon';
 import {Button} from 'react-bootstrap';
-import EventLocation from '../EventLocation'
-
+import ItineraryEditPage from '../ItineraryEditPage';
+import {Link} from 'react-router-dom';
+import {Place} from '../../api'
 
 export default class EventsList extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ export default class EventsList extends Component {
         this.state = {
             events: {}
         }
+
     }
 
     componentDidMount() {
@@ -25,8 +27,20 @@ export default class EventsList extends Component {
         })
     }
 
-    handleSubmit(event) {
+    onRoute(event) {
         event.preventDefault();
+        this.props.history.push(`/itineraries/${this.props.match.params.id}/edit`)
+    }
+
+    handleClick(event, name, location) {
+        event.preventDefault();
+        Place.create({
+            name: name,
+            latitude: location[1],
+            longitude: location[0]
+        }).then(data => {
+            this.props.history.push(`/itineraries/${this.props.match.params.id}/events/${data.id}`)
+        })
     }
 
     render() {
@@ -35,15 +49,12 @@ export default class EventsList extends Component {
                 <h1>Select Your Event(s)</h1>
                 <ul>
                 {
-                    this.state.events.results.map(event => {
-                        return <div key={event.id}>
-                            <h3>{event.title}</h3>
-                            <p>{event.description}</p>
-                            <EventLocation title={event.title} location={event.location}/>
-                            <p>{event.location}</p>
-                            <p>Start: {DateTime.fromISO(event.start, {zone: 'utc'}).toFormat('LLL dd yyyy')} End: {DateTime.fromISO(event.end, {zone: 'utc'}).toFormat('LLL dd yyyy')}</p>
-                            <p>Category: {event.labels.join(' ')}</p>
-                            <Button variant="success" onSubmit={this.handleSubmit}>Add</Button>
+                    this.state.events.results.map(result => {
+                        return <div key={result.id}>
+                            <h3><Link to="#" onClick={(e, name, location) => this.handleClick(e, result.title, result.location)}>{result.title}</Link></h3>
+                            <p>{result.description}</p>
+                            <p>Start: {DateTime.fromISO(result.start, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")} End: {DateTime.fromISO(result.end, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
+                            <p>Category: {result.labels.join(' ')}</p>
                         </div>
                     })
                 }

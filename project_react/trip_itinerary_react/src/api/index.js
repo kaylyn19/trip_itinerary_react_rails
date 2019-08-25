@@ -82,14 +82,19 @@ export const Itinerary = {
 
 export const Place = {
     create(params) {
-        return fetch(`${BASE_URL}/api/v1/places`, {
+        return fetch(`${BASE_URL}/places`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(params)
+            body: JSON.stringify({place: params})
         }).then(res => res.json())
-    }
+    },
+    // show(id) {
+    //     return fetch(`${BASE_URL}/places/${id}`, {
+    //         credentials: 'include'
+    //     }).then(res => res.json())
+    // }
 }
 
 export const Event = {

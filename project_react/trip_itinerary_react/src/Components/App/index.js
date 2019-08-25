@@ -11,7 +11,8 @@ import ItineraryShowPage from '../ItineraryShowPage';
 import MyItineraries from '../MyItineraries';
 import ItineraryEditPage from '../ItineraryEditPage'
 import Loading from '../Loading';
-import EventsList from '../EventsList'
+import EventsList from '../EventsList';
+import EventShowPage from '../EventShowPage';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
@@ -70,6 +71,7 @@ export default class App extends Component{
                             <Route exact path='/itineraries/:id' render={(routeProps) => <ItineraryShowPage {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>} />
                             <Route expact path='/itineraries/:id/edit' component={ItineraryEditPage}/>
                             <Route path='/my_itineraries' render={(routeProps) => <MyItineraries {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>
+                            <Route exact path='/itineraries/:id/events/:event_id' component={EventShowPage}/>
                             <Route exact path='/itineraries/:id/events' render={(routeProps) => <EventsList {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>
                             <Route exact path='/' component={WelcomePage}/>
                         </Switch>
