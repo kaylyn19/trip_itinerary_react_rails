@@ -26,7 +26,6 @@ class Api::V1::ItinerariesController < Api::ApplicationController
         end
         # from = DateTime.strptime(params[:itinerary][:start], '%a %b %d %Y')
         # to = DateTime.strptime(params[:itinerary][:end], '%a %b %d %Y')
-        byebug
         from = params[:itinerary][:start].to_datetime
         to = params[:itinerary][:end].to_datetime
 

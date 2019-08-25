@@ -2,9 +2,10 @@ import React from 'react';
 import DaysDetails from '../DaysDetails';
 import PlaceList from '../PlaceList';
 import MapContainer from '../MapContainer';
+import EventList from '../EventList'
 
 export default function DaysList(props) {
-    const {days, onDelete} = props;
+    const {days, onDelete, onSearch} = props;
 
     if (!days) {
         return(<div></div>)
@@ -20,17 +21,19 @@ export default function DaysList(props) {
                     </thead>
                     <tbody>
                     {days.map(day => {
-                        console.log(day.places)
                         return(
                             <tr key={day.id}>
                                 <td><DaysDetails from_date={day.from_date} to_date={day.to_date}/></td>
-                                <td><PlaceList places={day.places} /></td>
+                                <td>
+                                    <PlaceList places={day.places} />
+                                    <EventList events={day.events}/>
+                                </td>
                             </tr>
                         )
                     })}
                     </tbody>
                 </table>
-                <MapContainer days={days} onDeleteClick={onDelete}/>
+                <MapContainer days={days} onDeleteClick={onDelete} onSearchClick={onSearch}/>
             </main>
         )    
     }

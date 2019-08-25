@@ -37,6 +37,7 @@ class MapContainer extends Component {
         return( <div style={{position: "relative"}}>
                 <ButtonToolbar>
                     <Button variant="success" onClick={this.props.onDeleteClick} >Delete</Button>
+                    <Button variant="success" onClick={this.props.onSearchClick}>Search Events</Button>
                 </ButtonToolbar>
                 <Map className="map" google={this.props.google} zoom={12} style={{width: '800px', position: 'relative', height: '500px'}} initialCenter={{lat: this.state.coordinates[0][0], lng: this.state.coordinates[0][1]}}>
                     {
@@ -58,8 +59,8 @@ class MapContainer extends Component {
     }
 }
 
-// export default MapContainer
+export default MapContainer
 
-export default GoogleApiWrapper({
-    apiKey: API_KEY
-})(MapContainer)
+// export default GoogleApiWrapper({
+//     apiKey: API_KEY
+// })(MapContainer)

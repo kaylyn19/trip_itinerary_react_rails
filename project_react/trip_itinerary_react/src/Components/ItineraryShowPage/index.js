@@ -34,6 +34,12 @@ export default class ItineraryShowPage extends React.Component {
         }
     }
 
+    handleSearch = (event, props) => {
+        event.preventDefault();
+        const itinerary_id = props.match.params.id;
+        props.history.push(`/itineraries/${itinerary_id}/events`)
+    }
+
     render() {
         if (!this.state.itineraries.id) {
             return(
@@ -53,7 +59,7 @@ export default class ItineraryShowPage extends React.Component {
                 <div className="container" width="100" height="100">
                     <ReactWeather forecast="5days" apikey={WEATHER_API_KEY} type="city" city={this.state.itineraries.name}/>
                 </div>
-                <DaysList days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)}/>
+                <DaysList days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)} onSearch={(event, props) => this.handleSearch(event, this.props)}/>
             </main>
         )
     }
