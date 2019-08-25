@@ -1,20 +1,33 @@
 import React, {Component} from 'react';
-import {Place} from '../../api'
+import {Event} from '../../api'
 
 export default class EventShowPage extends Component {
     constructor(props) {
         console.log(props)
         super(props);
         this.state = {
-            places: {}
+            events: {}
         }
     }
 
     componentDidMount() {
+        Event.show(this.props.match.params.event_id).then(res => {
+            this.setState({
+                events: res
+            })
+        })
     }
 
     render() {
-        return <main>Event Show Page
+        return <main>
+            <h1>Event Show Page</h1>
+            {
+                // this.state.events.map(event => {
+                //     return <div key={event.id}>
+                //         <h3>{event.title}</h3>{event.title}
+                //     </div>
+                // })
+            }
         </main>
     }
 }

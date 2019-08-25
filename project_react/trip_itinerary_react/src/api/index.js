@@ -80,24 +80,24 @@ export const Itinerary = {
     }
 }
 
-export const Place = {
+export const Event = {
     create(params) {
-        return fetch(`${BASE_URL}/places`, {
+        return fetch(`${BASE_URL}/events`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({place: params})
+            body: JSON.stringify({event: params})
         }).then(res => res.json())
     },
-    // show(id) {
-    //     return fetch(`${BASE_URL}/places/${id}`, {
-    //         credentials: 'include'
-    //     }).then(res => res.json())
-    // }
+    show(id) {
+        return fetch(`${BASE_URL}/events/${id}`, {
+            credentials: 'include'
+        }).then(res => res.json())
+    }
 }
 
-export const Event = {
+export const Festival = {
     // all(start_date, end_date) {
     all() {
         return fetch (`https://api.predicthq.com/v1/events/?q=country=US`, {
