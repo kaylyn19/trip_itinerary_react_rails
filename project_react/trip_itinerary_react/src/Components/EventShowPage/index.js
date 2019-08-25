@@ -37,7 +37,7 @@ export default class EventShowPage extends Component {
                 <p>{this.state.events.address}</p>
                 <p>Starts: {DateTime.fromISO(this.state.events.start, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
                 <p>Ends: {DateTime.fromISO(this.state.events.end, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
-                <p>{this.state.events.labels}</p>
+                <p>Category: {this.state.events.labels}</p>
                 <Button onClick={(e, id, festival) => this.handleClick(e, this.props.match.params, this.state.events)}>Add</Button>
             </main>
         } else {
