@@ -98,9 +98,8 @@ export const Event = {
 }
 
 export const Festival = {
-    // all(start_date, end_date) {
-    all() {
-        return fetch (`https://api.predicthq.com/v1/events/?q=country=US`, {
+    all(start_date, end_date) {
+        return fetch (`https://api.predicthq.com/v1/events/?q=country=US&active.gte=${start_date}&active.lte=${end_date}&active.tz=America/Los_Angeles`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${API_KEY}`,

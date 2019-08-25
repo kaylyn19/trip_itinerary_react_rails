@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Event} from '../../api';
-import {Badge} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
+import {DateTime} from 'luxon';
 
 export default class EventShowPage extends Component {
     constructor(props) {
@@ -24,8 +25,8 @@ export default class EventShowPage extends Component {
                 <h1>{this.state.events.name}</h1>
                 <p>{this.state.events.description}</p>
                 <p>{this.state.events.address}</p>
-                <p>{this.state.events.start}</p>
-                <p>{this.state.events.end}</p>
+                <p>Starts: {DateTime.fromISO(this.state.events.start, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
+                <p>Ends: {DateTime.fromISO(this.state.events.end, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
                 <p>{this.state.events.labels}</p>
             </main>
         } else {
