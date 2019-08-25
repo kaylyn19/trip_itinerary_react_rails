@@ -1,6 +1,5 @@
 class Api::V1::EventsController < Api::ApplicationController
     def create
-        byebug
         results = Geocoder.search([params[:event][:latitude], params[:event][:longitude]])
         event = Event.find_or_create_by(
             name: params[:event][:name],

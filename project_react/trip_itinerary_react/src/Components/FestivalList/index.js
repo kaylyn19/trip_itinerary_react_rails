@@ -34,6 +34,8 @@ export default class EventsList extends Component {
 
     handleClick(event, festival) {
         event.preventDefault();
+        const {startLoading, stopLoading} = this.props;
+        startLoading();
         Event.create({
             name: festival.title,
             latitude: festival.location[1],
@@ -42,6 +44,7 @@ export default class EventsList extends Component {
             start: festival.start,
             end: festival.end
         }).then(data => {
+            stopLoading()
             this.props.history.push({
                 pathname: `/itineraries/${this.props.match.params.id}/events/${data.id}`,
                 state: {detail: data}
@@ -56,7 +59,6 @@ export default class EventsList extends Component {
                 <ul>
                 {
                     this.state.events.results.map(result => {
-                        console.log(result)
                         return <div key={result.id}>
                             <h3><Link to="#" onClick={(e, festival) => this.handleClick(e, result)}>{result.title}</Link></h3>
                             <p>{result.description}</p>

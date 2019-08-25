@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Event} from '../../api'
+import {Event} from '../../api';
+import {Badge} from 'react-bootstrap';
 
 export default class EventShowPage extends Component {
     constructor(props) {
-        console.log(props)
         super(props);
         this.state = {
             events: {}
@@ -19,15 +19,17 @@ export default class EventShowPage extends Component {
     }
 
     render() {
-        return <main>
-            <h1>Event Show Page</h1>
-            {
-                // this.state.events.map(event => {
-                //     return <div key={event.id}>
-                //         <h3>{event.title}</h3>{event.title}
-                //     </div>
-                // })
-            }
-        </main>
+        if (this.state.events) {
+            return <main>
+                <h1>{this.state.events.name}</h1>
+                <p>{this.state.events.description}</p>
+                <p>{this.state.events.address}</p>
+                <p>{this.state.events.start}</p>
+                <p>{this.state.events.end}</p>
+                <p>{this.state.events.labels}</p>
+            </main>
+        } else {
+            return <main></main>
+        }
     }
 }

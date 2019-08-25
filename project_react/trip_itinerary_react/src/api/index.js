@@ -92,7 +92,7 @@ export const Event = {
     },
     show(id) {
         return fetch(`${BASE_URL}/events/${id}`, {
-            credentials: 'include'
+            method: 'GET',
         }).then(res => res.json())
     }
 }
