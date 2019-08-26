@@ -323,8 +323,8 @@ table, .empty-itinerary {text-align: center; margin-top: 4em}
   /* margin-right: 3em; */
 }
 .map {margin: 3em 3em}
-.date {display: flex;} 
-.from-date {margin-left: 6em}
+/* .date {display: flex; justify-content: center;}  */
+.from-date {text-align: center; }
 .show-container{margin-top: 2em;
 display:flex;
 flex-direction: column;
