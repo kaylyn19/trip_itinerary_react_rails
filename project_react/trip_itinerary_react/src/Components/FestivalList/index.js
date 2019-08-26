@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {Festival, Itinerary} from '../../api';
 import {DateTime} from 'luxon';
-import {Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import {Event} from '../../api'
-import EventShowPage from '../EventShowPage';
 
 export default class EventsList extends Component {
     constructor(props) {

@@ -120,20 +120,3 @@
 
 //     }
 // }
-
-import React, {Component} from 'react';
-
-export default class ItineraryEditPage extends Component {
-    constructor(props){
-        super(props)
-        const {event} = props;
-        // console.log(event)
-        // this.state = {
-
-        // }
-    }
-
-    render() {
-        return <div></div>
-    }
-}

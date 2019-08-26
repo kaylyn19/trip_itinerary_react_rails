@@ -2,7 +2,6 @@ import React from 'react';
 import ItineraryDetails from '../ItineraryDetails'
 import { Itinerary } from '../../api';
 import DaysList from '../DaysList';
-import EventsList from '../FestivalList'
 import ReactWeather from 'react-open-weather';
 import 'react-open-weather/lib/css/ReactWeather.css';
 require('dotenv').config()

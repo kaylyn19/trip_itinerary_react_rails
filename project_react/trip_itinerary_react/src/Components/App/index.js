@@ -9,7 +9,7 @@ import PlanItineraryPage from '../PlanItineraryPage';
 import NavBar from '../NavBar'
 import ItineraryShowPage from '../ItineraryShowPage';
 import MyItineraries from '../MyItineraries';
-import ItineraryEditPage from '../ItineraryEditPage'
+// import ItineraryEditPage from '../ItineraryEditPage'
 import Loading from '../Loading';
 import FestivalList from '../FestivalList';
 import EventShowPage from '../EventShowPage';
@@ -69,7 +69,7 @@ export default class App extends Component{
                             <Route  path='/sign_in' render={(routeProps) => (<SignInPage {...routeProps} onSignIn={this.getCurrentUser}/>)} />
                             <AuthRoute exact path='/itineraries/new' isAuthenticated={true} component={PlanItineraryPage} startLoading={this.startLoading} stopLoading={this.stopLoading} />
                             <Route exact path='/itineraries/:id' render={(routeProps) => <ItineraryShowPage {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>} />
-                            <Route expact path='/itineraries/:id/edit' component={ItineraryEditPage}/>
+                            {/* <Route expact path='/itineraries/:id/edit' component={ItineraryEditPage}/> */}
                             <Route path='/my_itineraries' render={(routeProps) => <MyItineraries {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>
                             <Route exact path='/itineraries/:id/events/:event_id' component={EventShowPage}/>
                             <Route exact path='/itineraries/:id/events' render={(routeProps) => <FestivalList {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>

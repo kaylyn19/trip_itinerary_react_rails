@@ -1,6 +1,6 @@
 import React from 'react';
 import {User} from '../../api';
-import App from '../../App.css';
+import App from '../../App.css'
 
 export default function SignUpPage(props) {
     const {onSignUp} = props;

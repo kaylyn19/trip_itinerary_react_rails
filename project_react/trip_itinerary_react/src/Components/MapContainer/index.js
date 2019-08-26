@@ -10,7 +10,7 @@ class MapContainer extends Component {
 
         const {days} = props;
         const coord_set = [];
-        days.map((each_day, index) => {
+        days.map((each_day) => {
             each_day.places.map(place => {
                 coord_set.push([place.latitude, place.longitude, place.name])
             })
