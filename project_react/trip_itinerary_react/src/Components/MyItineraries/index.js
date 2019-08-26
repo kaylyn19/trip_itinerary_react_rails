@@ -28,9 +28,9 @@ export default class MyItineraries extends Component {
             <div className="itinerary-cards">
                 {this.state.trips.map(trip => {
                     return(
-                        <div className="itinerary-card">
+                        <div key={trip.id} className="itinerary-card">
 
-                            <h3 class="id"><Link to={`/itineraries/${trip.id}`}>{trip.name}</Link></h3>
+                            <h3 className="id"><Link to={`/itineraries/${trip.id}`}>{trip.name}</Link></h3>
                             <p>From {DateTime.fromISO(trip.start, {zone: 'utc'}).toFormat('LLL dd yyyy')} To {DateTime.fromISO(trip.end, {zone: 'utc'}).toFormat('LLL dd yyyy')}</p>
                         </div>
                     )
