@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom';
 
 function WelcomePage() {
     return (<div className="slider">
-        <div className="slide"><p className="slide-number"></p></div>
-        <div className="slide"><p className="slide-number"></p></div>
-        <div className="slide"><p className="slide-number"></p></div>
-        <div className="slide"><p className="slide-number"></p></div>
+        <slide class="slide"><p class="slide-number"></p></slide>
+        <slide class="slide"><p class="slide-number"></p></slide>
+        <slide class="slide"><p class="slide-number"></p></slide>
+        <slide class="slide"><p class="slide-number"></p></slide>
         <div className='welcome-button'>
             <p className="welcome-text">Plan your next adventure with us!</p>
             <button id="welcome-button">Are you ready? &nbsp;
