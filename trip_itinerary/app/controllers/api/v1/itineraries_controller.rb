@@ -24,8 +24,10 @@ class Api::V1::ItinerariesController < Api::ApplicationController
             # maps_info[place] = coord
             maps_info << [place, coord] # ["central park", [x, y]]
         end
-        from = DateTime.strptime(params[:itinerary][:start], '%Y-%m-%d')#itinerary.start
-        to = DateTime.strptime(params[:itinerary][:end], '%Y-%m-%d')
+        # from = DateTime.strptime(params[:itinerary][:start], '%a %b %d %Y')
+        # to = DateTime.strptime(params[:itinerary][:end], '%a %b %d %Y')
+        from = params[:itinerary][:start].to_datetime
+        to = params[:itinerary][:end].to_datetime
 
         duration = (to - from).to_i
         for day_count in 0...duration

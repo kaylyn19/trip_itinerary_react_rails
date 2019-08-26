@@ -22,15 +22,15 @@ export default class MyItineraries extends Component {
 
     render() {
         if (this.state.trips.length === 0) {
-            return <h1>Your list is empty!</h1>
+            return <div className="no-trips"><h1>Your list is empty!</h1></div>
         }
         return(
-            <div>
+            <div className="itinerary-cards">
                 {this.state.trips.map(trip => {
                     return(
-                        <div className="itinerary-card">
+                        <div key={trip.id} className="itinerary-card">
 
-                            <h3 class="id">ID {trip.id} <Link to={`/itineraries/${trip.id}`}>{trip.name}</Link></h3>
+                            <h3 className="id"><Link to={`/itineraries/${trip.id}`}>{trip.name}</Link></h3>
                             <p>From {DateTime.fromISO(trip.start, {zone: 'utc'}).toFormat('LLL dd yyyy')} To {DateTime.fromISO(trip.end, {zone: 'utc'}).toFormat('LLL dd yyyy')}</p>
                         </div>
                     )

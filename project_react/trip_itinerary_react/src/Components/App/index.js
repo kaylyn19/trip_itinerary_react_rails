@@ -9,7 +9,15 @@ import PlanItineraryPage from '../PlanItineraryPage';
 import NavBar from '../NavBar'
 import ItineraryShowPage from '../ItineraryShowPage';
 import MyItineraries from '../MyItineraries';
-import Loading from '../Loading'
+import ItineraryEditPage from '../ItineraryEditPage'
+import Loading from '../Loading';
+import FestivalList from '../FestivalList';
+import EventShowPage from '../EventShowPage';
+
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import rootReducer from '../../store/reducers';
 
 
 export default class App extends Component{
@@ -49,20 +57,26 @@ export default class App extends Component{
     }
 
     render() {
+        const store = createStore(rootReducer, composeWithDevTools())
         return(
             <BrowserRouter>
-                <div>
-                    <NavBar currentUser={this.state.currentUser} onSignOut={this.signOut} />
-                    <Loading isLoading={this.state.isLoading}/>
-                    <Switch>
-                        <Route exact path='/sign_up' render={(routeProps) => <SignUpPage onSignUp={this.getCurrentUser} {...routeProps}/>} />
-                        <Route  path='/sign_in' render={(routeProps) => (<SignInPage {...routeProps} onSignIn={this.getCurrentUser}/>)} />
-                        <AuthRoute exact path='/itineraries/new' isAuthenticated={this.state.currentUser} component={PlanItineraryPage} startLoading={this.startLoading} stopLoading={this.stopLoading} />
-                        <Route exact path='/itineraries/:id' render={(routeProps) => <ItineraryShowPage {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>} />
-                        <Route path='/my_itineraries' render={(routeProps) => <MyItineraries {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>
-                        <Route exact path='/' component={WelcomePage}/>
-                    </Switch>
-                </div>
+                <Provider store={store}>
+                    <div>
+                        <NavBar currentUser={this.state.currentUser} onSignOut={this.signOut} />
+                        <Loading isLoading={this.state.isLoading}/>
+                        <Switch>
+                            <Route exact path='/sign_up' render={(routeProps) => <SignUpPage onSignUp={this.getCurrentUser} {...routeProps}/>} />
+                            <Route  path='/sign_in' render={(routeProps) => (<SignInPage {...routeProps} onSignIn={this.getCurrentUser}/>)} />
+                            <AuthRoute exact path='/itineraries/new' isAuthenticated={true} component={PlanItineraryPage} startLoading={this.startLoading} stopLoading={this.stopLoading} />
+                            <Route exact path='/itineraries/:id' render={(routeProps) => <ItineraryShowPage {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>} />
+                            <Route expact path='/itineraries/:id/edit' component={ItineraryEditPage}/>
+                            <Route path='/my_itineraries' render={(routeProps) => <MyItineraries {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>
+                            <Route exact path='/itineraries/:id/events/:event_id' component={EventShowPage}/>
+                            <Route exact path='/itineraries/:id/events' render={(routeProps) => <FestivalList {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>
+                            <Route exact path='/' component={WelcomePage}/>
+                        </Switch>
+                    </div>
+                </Provider>
             </BrowserRouter>
         )
 

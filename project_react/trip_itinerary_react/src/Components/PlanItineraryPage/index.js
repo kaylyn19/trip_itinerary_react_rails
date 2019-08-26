@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Itinerary} from '../../api'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class PlanItineraryPage extends Component {
     constructor(props) {
@@ -55,8 +57,19 @@ export default class PlanItineraryPage extends Component {
     }
 
     handleChange(event) {
-        event.preventDefault()
-        const newData = {[event.target.name]: event.target.value}
+        event.preventDefault();
+        // const newData = {[event.target.name]: event.target.value}
+        this.setState({
+            newTrip: {
+                ...this.state.newTrip,
+                name: event.target.value
+            }
+        })
+    }
+
+    handleDateChange(date, label) {
+        console.log('date is', date, 'label is ', label)
+        const newData = {[label]: date}
         this.setState({
             newTrip: {
                 ...this.state.newTrip,
@@ -80,21 +93,26 @@ export default class PlanItineraryPage extends Component {
 
     render() {
         return(
-            <main className='page'>
+<main className='page'>
                 <form onSubmit={this.handleSubmit} className="container card card-body col-12 col-md-4 col-lg-4 create-itinerary">
                    
-                <h4 className="itinerary-title">Create your Itinerary</h4>  
+                <h4 className="itinerary-title">Create your Itinerary</h4> 
+                <div className="create-form"> 
                     <div>
-                        <label htmlFor='name' className="tripname">Name of your Trip</label>
-                        <input type='text' name='name' value={this.state.newTrip.name} placeholder='Trip name' onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/>
+                        <label htmlFor='name' className="tripname">Your Destination</label>
+                        <input type='text' name='name' value={this.state.newTrip.name} placeholder='Destination' onChange={this.handleChange} className="input-create form-control"/>
                     </div>
+                   
                     <div >
                         <label htmlFor='start' className="from">From</label>
-                        <input type='text' name='start' className="from" placeholder='YYYY-MM-DD' value={this.state.newTrip.start} onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/>
+                        <DatePicker name='start' className='from' selected={this.state.newTrip.start} onChange={(date, label) => this.handleDateChange(date, 'start')}  value={this.state.newTrip.start} className="input-create form-control"/>
+                        {/* <input type='text' name='start' className="from" placeholder='YYYY-MM-DD' value={this.state.newTrip.start} onChange={this.handleChange} className="input-create form-control"/> */}
                     </div>
                     <div>
                         <label htmlFor='end' className="to">To</label>
-                        <input type='text' name='end' className="to" placeholder='YYYY-MM-DD' value={this.state.newTrip.end} onChange={this.handleChange} className="col-md-6 offset-3 mb-2 form-control"/>
+                        <DatePicker name='end' className='to' selected={this.state.newTrip.end} onChange={(date, label) => this.handleDateChange(date, 'end')} value={this.state.newTrip.end} className="input-create form-control"/>
+                        {/* <input type='text' name='end' className="to" placeholder='YYYY-MM-DD' value={this.state.newTrip.end} onChange={this.handleChange} className="input-create form-control"/> */}
+                    </div>
                     </div>
                     <div>
                         <label htmlFor='name' className="placename">Enter places you want to visit: </label>
@@ -104,7 +122,7 @@ export default class PlanItineraryPage extends Component {
                             this.state.newTrip.places.map((place, index) => {
                                 return(
                                     <div key={index} className="delete">
-                                        <input value={place.name} type='text' name='name' onChange={e => this.handlePlaceChange(e, index)} className="col-md-6 mb-4 form-control"/>
+                                        <input value={place.name} type='text' name='name' onChange={e => this.handlePlaceChange(e, index)} className="col-md-4 mb-4 form-control"/>
                                         <button onClick={e => this.removePlace(e)} className="btn btn-danger small mb-4">-</button>
                                     </div>
                                 )
@@ -117,7 +135,6 @@ export default class PlanItineraryPage extends Component {
                     </div>
                 </form>
             </main>
-
         )    
     }
 }

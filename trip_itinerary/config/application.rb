@@ -24,7 +24,7 @@ module TripItinerary
 
     config.middleware.insert_before 0, Rack::Cors do 
       allow do
-        origins('127.0.0.1:5500', 'localhost:8080', 'localhost:3001')
+        origins('127.0.0.1:5500', 'localhost:8080', 'localhost:3001', 'api.predicthq.com')
         resource '/api/*', headers: :any, credentials: true, methods: [:get, :post, :delete, :patch, :put, :options]
       end
     end

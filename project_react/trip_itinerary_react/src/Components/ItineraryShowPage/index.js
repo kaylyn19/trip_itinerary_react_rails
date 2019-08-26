@@ -2,6 +2,11 @@ import React from 'react';
 import ItineraryDetails from '../ItineraryDetails'
 import { Itinerary } from '../../api';
 import DaysList from '../DaysList';
+import EventsList from '../FestivalList'
+import ReactWeather from 'react-open-weather';
+import 'react-open-weather/lib/css/ReactWeather.css';
+require('dotenv').config()
+const WEATHER_API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY
 
 export default class ItineraryShowPage extends React.Component {
     constructor(props) {
@@ -29,6 +34,12 @@ export default class ItineraryShowPage extends React.Component {
         }
     }
 
+    handleSearch = (event, props) => {
+        event.preventDefault();
+        const itinerary_id = props.match.params.id;
+        props.history.push(`/itineraries/${itinerary_id}/events`)
+    }
+
     render() {
         if (!this.state.itineraries.id) {
             return(
@@ -45,7 +56,10 @@ export default class ItineraryShowPage extends React.Component {
                     start={this.state.itineraries.start}
                     end={this.state.itineraries.end}
                 />
-                <DaysList days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)}/>
+                <div className="container" width="100" height="100">
+                    <ReactWeather forecast="5days" apikey={WEATHER_API_KEY} type="city" city={this.state.itineraries.name}/>
+                </div>
+                <DaysList itinerary_id={this.state.itineraries.id} days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)} onSearch={(event, props) => this.handleSearch(event, this.props)}/>
             </main>
         )
     }

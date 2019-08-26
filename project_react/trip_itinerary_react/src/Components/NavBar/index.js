@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { Session } from '../../api';
-import {Navbar, Nav, NavbarCollapse, NavLink, NavDropdown, Form, FormControl, Button} from 'react-bootstrap';
+import {Navbar, Nav, Form} from 'react-bootstrap';
 // import {Button, Nav, etc} from 'react-bootstrap'
 
 
@@ -26,11 +26,7 @@ export default function NavBar(props) {
                                     <Nav.Link as={Link} to='/my_itineraries'>My Itineraries</Nav.Link>
                                 </Nav>
                         <Form inline className="dropleft">
-                            <NavDropdown title="Actions" id="basic-nav-dropdown"> 
-                                {/* Not sure how to display username need some research */}
-                                    <NavDropdown.Item  as={Link} onClick={handleSignout}>Sign Out</NavDropdown.Item>
-                                    {/* <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item> */}
-                            </NavDropdown>
+                            <Nav.Link as={Link} to="#" onClick={handleSignout}>Sign Out</Nav.Link>
                         </Form>
                     </Navbar.Collapse>
             </Navbar>         
@@ -47,11 +43,8 @@ export default function NavBar(props) {
                     <Nav.Link  as={Link} to='/itineraries/new' >Create Itinerary</Nav.Link> 
                 </Nav>
                 <Form inline className="dropleft">
-                    <NavDropdown title="Actions" id="basic-nav-dropdown"> 
-                        {/* Not sure how to display username need some research */}
-                            <NavDropdown.Item  as={Link} to='/sign_in'>Sign In</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to='/sign_up'>Sign Up</NavDropdown.Item>
-                    </NavDropdown>
+                <Nav.Link as={Link} to='/sign_in'>Sign In</Nav.Link>
+               <Nav.Link as={Link} to='/sign_up'>Sign Up</Nav.Link>
                 </Form>
             </Navbar.Collapse>
         </Navbar> 
