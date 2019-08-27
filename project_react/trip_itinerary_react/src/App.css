@@ -309,7 +309,9 @@ span {
   flex-wrap: wrap;
 }
 
-
+#place:hover {
+  color: blue;
+}
 
 .id {padding-bottom: .125em}
 
