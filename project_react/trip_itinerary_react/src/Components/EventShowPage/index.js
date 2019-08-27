@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Event, AttendingEvent} from '../../api';
-import {Button} from 'react-bootstrap';
+
 import {DateTime} from 'luxon';
 
 export default class EventShowPage extends Component {
@@ -19,13 +19,14 @@ export default class EventShowPage extends Component {
         })
     }
 
-    handleClick(event, eventParams, festival) {
+    handleClick(event, prop, festival) {
         event.preventDefault();
+        console.log(prop, festival)
         AttendingEvent.create({
-            event_id: eventParams.event_id,
-            day_id: [festival.start, eventParams.id]
-        }).then(res => {
-            this.props.history.push(`/itineraries/${this.props.match.params.id}`)
+            event_id: prop.match.params.event_id,
+            day_id: [festival.start, prop.match.params.id]
+        }, prop.match.params.event_id).then(() => {
+            prop.history.push(`/itineraries/${prop.match.params.id}`)
         })
     }
 
@@ -39,7 +40,7 @@ export default class EventShowPage extends Component {
                 <p className="event-category">Category: {this.state.events.labels}</p>
                 <p className="event-about"></p>
                 <p className="event-description"><p className="event-about">About this event:</p> <br/>{this.state.events.description}</p>
-                <button className="btn btn-primary event-button" onClick={(e, id, festival) => this.handleClick(e, this.props.match.params, this.state.events)}>Add to itinerary</button>
+                <button className="btn btn-primary event-button" onClick={(e, id, festival) => this.handleClick(e, this.props, this.state.events)}>Add to itinerary</button>
             </div>
         } else {
             return <main></main>

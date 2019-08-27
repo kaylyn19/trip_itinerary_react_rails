@@ -19,6 +19,7 @@ export default class SavedEventPage extends Component {
     }
 
     handleDelete(event, prop) {
+        event.preventDefault();
         Event.destroy(prop.match.params.event_id).then (res => {
             prop.history.push(`/itineraries/${prop.match.params.id}`)
         })

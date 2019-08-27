@@ -50,20 +50,20 @@ export default class EventsList extends Component {
     render() {
         if (this.state.events.results) {
             return <div className="festival-list">
-                <div  >
-                    <p className="festival-header">Select Your Event(s)</p>
-                    {
-                        this.state.events.results.map(result => {
-                            return <div key={result.id} className="festivals">
-                                <p className="festival-title"><Link to="#" onClick={(e, festival) => this.handleClick(e, result)}>{result.title}</Link></p>
-                                <p className="festival-start">Starts: {DateTime.fromISO(result.start, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p> 
-                                <p className="festival-end">Ends: {DateTime.fromISO(result.end, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
-                                <p className="festival-description">{result.description}</p>
-                                <p className="festival-category">Category: {result.labels.join(' ')}</p>
-                            </div>
-                        })
-                    }
-                </div>
+            <div>
+            <p className="festival-header">Select Your Event(s)</p>
+            {
+                this.state.events.results.map(result => {
+                    return <div key={result.id} className="festivals">
+                        <p className="festival-title"><Link to="#" onClick={(e, festival) => this.handleClick(e, result)}>{result.title}</Link></p>
+                        <p className="festival-start">Starts: {DateTime.fromISO(result.start, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p> 
+                        <p className="festival-end">Ends: {DateTime.fromISO(result.end, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
+                        <p className="festival-description">{result.description}</p>
+                        <p className="festival-category">Category: {result.labels.join(' ')}</p>
+                    </div>
+                })
+            }
+            </div>
         </div>
         } else {
             return <main><h1>There are events during your visit</h1></main>
