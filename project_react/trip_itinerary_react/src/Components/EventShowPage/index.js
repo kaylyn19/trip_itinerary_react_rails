@@ -31,15 +31,16 @@ export default class EventShowPage extends Component {
 
     render() {
         if (this.state.events) {
-            return <main>
-                <h1>{this.state.events.name}</h1>
-                <h5>{this.state.events.description}</h5>
-                <p>{this.state.events.address}</p>
-                <p>Starts: {DateTime.fromISO(this.state.events.start, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
-                <p>Ends: {DateTime.fromISO(this.state.events.end, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
-                <p>Category: {this.state.events.labels}</p>
-                <Button onClick={(e, id, festival) => this.handleClick(e, this.props.match.params, this.state.events)}>Add</Button>
-            </main>
+            return <div className="event-showpage">
+                <p className="event-name">{this.state.events.name}</p>
+                <p className="event-address">{this.state.events.address}</p>
+                <p className="event-start">Starts: {DateTime.fromISO(this.state.events.start, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
+                <p className="event-end">Ends: {DateTime.fromISO(this.state.events.end, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
+                <p className="event-category">Category: {this.state.events.labels}</p>
+                <p className="event-about"></p>
+                <p className="event-description"><p className="event-about">About this event:</p> <br/>{this.state.events.description}</p>
+                <button className="btn btn-primary event-button" onClick={(e, id, festival) => this.handleClick(e, this.props.match.params, this.state.events)}>Add to itinerary</button>
+            </div>
         } else {
             return <main></main>
         }
