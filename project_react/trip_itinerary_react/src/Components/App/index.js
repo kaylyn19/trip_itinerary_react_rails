@@ -14,6 +14,7 @@ import Loading from '../Loading';
 import FestivalList from '../FestivalList';
 import EventShowPage from '../EventShowPage';
 import NearbySearch from '../NearbySearch';
+import SavedEventPage from '../SavedEventPage'
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
@@ -76,6 +77,7 @@ export default class App extends Component{
                             {/* <Route exact path='itineraries/:id/nearby_places' component={NearbySearch} /> */}
                             <Route exact path='/itineraries/:id/nearby_places' render={(routeProps) => <NearbySearch {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading} />}/>
                             <Route exact path='/itineraries/:id/events' render={(routeProps) => <FestivalList {...routeProps} startLoading={this.startLoading} stopLoading={this.stopLoading}/>}/>
+                            <Route exact path='/itineraries/:id/events/:event_id/display' component={SavedEventPage}/>
                             <Route exact path='/' component={WelcomePage}/>
                         </Switch>
                     </div>

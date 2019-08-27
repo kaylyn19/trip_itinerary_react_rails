@@ -13,4 +13,10 @@ class Api::V1::AttendingEventsController < Api::ApplicationController
             render json: {errors: event.errors.full_messages}, status: 422
         end
     end
+
+    # def destroy
+    #     event = AttendingEvent.find_by(event_id: params[:event_id])
+    #     event.destroy
+    #     render json: {message: "Successfully deleted", status: 200}
+    end
 end

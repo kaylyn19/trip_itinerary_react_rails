@@ -42,7 +42,7 @@ class Api::V1::ItinerariesController < Api::ApplicationController
                 success = false
             end
         end
-byebug
+
         sort_coords = maps_info.sort_by{|place| place[1][0]} # sort by latitude
         sort_coords.each do |place|
             labels << place[0]

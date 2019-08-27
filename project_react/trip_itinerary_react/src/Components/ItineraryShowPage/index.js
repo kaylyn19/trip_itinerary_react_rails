@@ -56,9 +56,9 @@ export default class ItineraryShowPage extends React.Component {
                     end={this.state.itineraries.end}
                 />
                 <div className="container">
-                    <ReactWeather forecast="5days" apikey={'eefb90a65f4b4e94afc185114191608'} type="city" city={this.state.itineraries.name}/>
+                    <ReactWeather forecast="5days" apikey={WEATHER_API_KEY} type="city" city={this.state.itineraries.name}/>
                 </div>
-                <DaysList itinerary_id={this.state.itineraries.id} days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)} onSearch={(event, props) => this.handleSearch(event, this.props)}/>
+                <DaysList itinerary_id={this.state.itineraries.id} days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)} onSearch={(event, props) => this.handleSearch(event, this.props)} this_props={this.props}/>
             </main>
         )
     }
