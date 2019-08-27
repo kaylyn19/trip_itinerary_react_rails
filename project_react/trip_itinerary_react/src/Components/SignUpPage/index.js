@@ -42,7 +42,7 @@ export default function SignUpPage(props) {
                 <input type="password" name="password_confirmation" placeholder="Confirm Password" className="col-md-10 offset-1 mb-3 form-control"/>
             </div>
             <input type="submit" value="Sign Up" className="btn btn-success col-8 col-md-3 mt-3 offset-4"/>
-            <div class="text-center already">Already have an account? <a href="#">Login here</a></div>
+            <div className="text-center already">Already have an account? <a href="#">Login here</a></div>
         </form> 
     </main>
 }

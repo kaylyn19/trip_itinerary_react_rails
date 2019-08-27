@@ -40,7 +40,7 @@ export default class EventShowPage extends Component {
                 <p className="event-category">Category: {this.state.events.labels}</p>
                 <p className="event-about"></p>
                 <p className="event-description"><p className="event-about">About this event:</p> <br/>{this.state.events.description}</p>
-                <button className="btn btn-primary event-button" onClick={(e, id, festival) => this.handleClick(e, this.props, this.state.events)}>Add to itinerary</button>
+                <button className="btn btn-success event-button" onClick={(e, id, festival) => this.handleClick(e, this.props, this.state.events)}>Add to itinerary</button>
             </div>
         } else {
             return <main></main>

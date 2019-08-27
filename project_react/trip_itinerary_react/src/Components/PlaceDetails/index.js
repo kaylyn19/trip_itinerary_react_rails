@@ -12,7 +12,7 @@ export default function PlaceDetails(props) {
 
     return(
         <div>
-            <p id="place" onClick={handleClick}>{place}</p>
+            <p className="placedetails" id="place" onClick={handleClick}>{place}</p>
         </div>
     )
 }
