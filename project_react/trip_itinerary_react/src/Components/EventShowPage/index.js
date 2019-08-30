@@ -34,7 +34,7 @@ export default class EventShowPage extends Component {
         if (this.state.events) {
             return <div className="event-showpage">
                 <p className="event-name">{this.state.events.name}</p>
-                <p className="event-address">{this.state.events.address}</p>
+                {/* <p className="event-address">{this.state.events.address}</p> */}
                 <p className="event-start">Starts: {DateTime.fromISO(this.state.events.start, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
                 <p className="event-end">Ends: {DateTime.fromISO(this.state.events.end, {zone: 'utc'}).toFormat("LLL dd yyyy 'at' HH ':' mm")}</p>
                 <p className="event-category">Category: {this.state.events.labels}</p>
