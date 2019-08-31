@@ -50,16 +50,16 @@ export default class ItineraryShowPage extends React.Component {
         }
 
         return(
-            <main className="page" style={{display: "flex", flexDirection: "column"}}>
+            <main className="page">
                 <ItineraryDetails 
                     name={this.state.itineraries.name}
                     start={this.state.itineraries.start}
                     end={this.state.itineraries.end}
                 />
-                <div className="container" width="100" height="100">
+                <div className="container">
                     <ReactWeather forecast="5days" apikey={WEATHER_API_KEY} type="city" city={this.state.itineraries.name}/>
                 </div>
-                <DaysList itinerary_id={this.state.itineraries.id} days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)} onSearch={(event, props) => this.handleSearch(event, this.props)}/>
+                <DaysList itinerary_id={this.state.itineraries.id} days={this.state.itineraries.days} onDelete={this.handleDelete.bind(this)} onSearch={(event, props) => this.handleSearch(event, this.props)} this_props={this.props}/>
             </main>
         )
     }

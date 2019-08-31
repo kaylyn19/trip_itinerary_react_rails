@@ -35,11 +35,11 @@ class MapContainer extends Component {
 
     render() {
         return( <div style={{position: "relative"}}>
-                <ButtonToolbar>
-                    <Button variant="success" onClick={this.props.onDeleteClick} >Delete</Button>
-                    <Button variant="success" onClick={this.props.onSearchClick}>Search Events</Button>
-                </ButtonToolbar>
-                <Map className="map" google={this.props.google} zoom={12} style={{width: '800px', position: 'relative', height: '500px'}} initialCenter={{lat: this.state.coordinates[0][0], lng: this.state.coordinates[0][1]}}>
+                <div className='button-map'>
+                    <button className='buttondelete btn-success btn' variant="success" onClick={this.props.onDeleteClick}>Delete</button>
+                    <button className='buttonsuccess btn-success btn' variant="success" onClick={this.props.onSearchClick}>Search Events</button>
+                </div>
+                <Map className="map" google={this.props.google} zoom={12} style={{ height: '50vh', width: '800px' }} initialCenter={{lat: this.state.coordinates[0][0], lng: this.state.coordinates[0][1]}}>
                     {
                         this.state.coordinates.map((coord, index) => {
                             return(

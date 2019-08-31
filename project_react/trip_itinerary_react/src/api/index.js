@@ -94,6 +94,12 @@ export const Event = {
         return fetch(`${BASE_URL}/events/${id}`, {
             method: 'GET',
         }).then(res => res.json())
+    },
+    destroy(event_id) {
+        return fetch(`${BASE_URL}/events/${event_id}`, {
+            method: 'DELETE',
+            credentials: 'include'
+        }).then(res => res.json())
     }
 }
 
@@ -118,5 +124,11 @@ export const AttendingEvent = {
             },
             body: JSON.stringify({attending_event: params})
         }).then(res => res.json())
+    }
+}
+
+export const Place = {
+    show(place_name) {
+        return fetch(`${BASE_URL}/places/${place_name}`).then(res => res.json())
     }
 }

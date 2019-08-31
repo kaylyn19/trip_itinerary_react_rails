@@ -1,31 +1,26 @@
 import React, {Component} from 'react';
-import {Event, AttendingEvent} from '../../api';
+import {Event} from '../../api';
+import {DateTime} from 'luxon'
 
-import {DateTime} from 'luxon';
-
-export default class EventShowPage extends Component {
+export default class SavedEventPage extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             events: {}
         }
     }
 
     componentDidMount() {
-        Event.show(this.props.match.params.event_id).then(res => {
+        Event.show(this.props.match.params.event_id).then( res => {
             this.setState({
                 events: res
             })
         })
     }
 
-    handleClick(event, prop, festival) {
+    handleDelete(event, prop) {
         event.preventDefault();
-        console.log(prop, festival)
-        AttendingEvent.create({
-            event_id: prop.match.params.event_id,
-            day_id: [festival.start, prop.match.params.id]
-        }, prop.match.params.event_id).then(() => {
+        Event.destroy(prop.match.params.event_id).then (res => {
             prop.history.push(`/itineraries/${prop.match.params.id}`)
         })
     }
@@ -40,7 +35,8 @@ export default class EventShowPage extends Component {
                 <p className="event-category">Category: {this.state.events.labels}</p>
                 <p className="event-about"></p>
                 <p className="event-description"><p className="event-about">About this event:</p> <br/>{this.state.events.description}</p>
-                <button className="btn btn-success event-button" onClick={(e, id, festival) => this.handleClick(e, this.props, this.state.events)}>Add to itinerary</button>
+                <button className="btn btn-primary event-button" onClick={(e, prop) => this.handleDelete(e, this.props)}>Remove from itinerary</button>
+
             </div>
         } else {
             return <main></main>

@@ -5,7 +5,7 @@ import MapContainer from '../MapContainer';
 import EventList from '../EventList'
 
 export default function DaysList(props) {
-    const {days, onDelete, onSearch, itinerary_id} = props;
+    const {days, onDelete, onSearch, itinerary_id, this_props} = props;
 
     if (!days) {
         return(<div></div>)
@@ -23,9 +23,9 @@ export default function DaysList(props) {
                     {days.map(day => {
                         return(
                             <tr key={day.id}>
-                                <td><DaysDetails from_date={day.from_date} to_date={day.to_date}/></td>
+                                <td><DaysDetails from_date={day.from_date}/></td>
                                 <td>
-                                    <PlaceList places={day.places} />
+                                    <PlaceList this_props={this_props} places={day.places}/>
                                     <EventList itinerary_id={itinerary_id} events={day.events}/>
                                 </td>
                             </tr>

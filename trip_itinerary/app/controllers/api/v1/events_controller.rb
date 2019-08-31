@@ -25,4 +25,10 @@ class Api::V1::EventsController < Api::ApplicationController
             render json: event
         end
     end
+
+    def destroy
+        event = Event.find params[:id]
+        event.destroy
+        render json: {message: "successfully deleted", status: 200}
+    end
 end

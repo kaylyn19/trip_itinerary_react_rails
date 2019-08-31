@@ -68,7 +68,6 @@ export default class PlanItineraryPage extends Component {
     }
 
     handleDateChange(date, label) {
-        console.log('date is', date, 'label is ', label)
         const newData = {[label]: date}
         this.setState({
             newTrip: {

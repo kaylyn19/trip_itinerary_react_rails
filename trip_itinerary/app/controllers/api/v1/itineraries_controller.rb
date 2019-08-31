@@ -29,11 +29,13 @@ class Api::V1::ItinerariesController < Api::ApplicationController
         from = params[:itinerary][:start].to_datetime
         to = params[:itinerary][:end].to_datetime
 
-        duration = (to - from).to_i
+        # duration = (to - from).to_i
+        duration = (to - from + 1).to_i
         for day_count in 0...duration
             day_db = Day.new(
                 from_date: from + day_count,
                 to_date: from + day_count + 1,
+                # to_date: from + day_count,
                 itinerary_id: itinerary.id
             )
             if !day_db.save
